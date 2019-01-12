@@ -2,14 +2,14 @@
 *Open Source Deployment System*
 
 ### Description
-MagicBoot is a Windows/CloneZilla image deployment system writen in nodejs.  
-You can distribute Clonezilla or Windows (*wim) images over PXE boot.  
+MagicBoot is a Windows/CloneZilla image deployment system writen in nodejs.\
+You can distribute Clonezilla or Windows (*wim) images over PXE boot.\
 To complete/customize your installation, post-install tasks can be runned after the deployment completed.
 
 
 ### Before you start
-MagicBoot requires MongoDB & nodejs.  
-MongoDB: https://www.mongodb.com/, the community version should do the job.  
+MagicBoot requires MongoDB & nodejs.\
+MongoDB: https://www.mongodb.com/, the community version should do the job.\
 NodeJS: https://nodejs.org/, the LTS version is recomended.
 
 
@@ -27,10 +27,20 @@ NodeJS: https://nodejs.org/, the LTS version is recomended.
 
 
 ### Webinterface
+
+###### Session (Computer in queue)
 ![Session](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/session.png "Session")
+
+###### Computer
 ![Computer](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/computer.png "Computer")
+
+###### Image
 ![Images](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/images.png "Images")
+
+###### Groups
 ![Groups](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/groups.png "groups")
+
+###### Tasks
 ![Tasks](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/tasks.png "Tasks")
 
 
