@@ -1,0 +1,50 @@
+html, body{
+  height: 100%;
+  width: 100%;
+}
+
+body{
+  background-color: #eee;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.section-left{
+  display: inline-block;
+  background-color: #343a40;
+  width: 200px;
+  height: 100%;
+  float: left;
+}
+
+.section-right{
+  display: inline-block;
+  width: calc(100% - 200px);
+  height: 100%;
+  float: left;
+}
+
+.container-fluid{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.card-body{
+  padding: 10px;
+}
+
+ul.navigation{
+  width: 100%;
+  list-style: none;
+  padding: 0;
+}
+
+ul.navigation li {
+  display: block;
+}
+
+ul.navigation li a{
+  display: block;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}

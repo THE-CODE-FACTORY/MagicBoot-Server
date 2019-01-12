@@ -1,0 +1,23 @@
+# Logs
+logs/*
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.node_repl_history
+.npm
+
+# dotenv environment variables file
+.env
+.env.test
+
+# json files
+config.json
+checksum.json
+package-lock.json
+
+# ignore tftp-root
+tftp-root/*

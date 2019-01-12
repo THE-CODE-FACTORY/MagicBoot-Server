@@ -1,0 +1,421 @@
+<div class="" ng-controller="Session">
+
+  <!-- CONTAINER -->
+  <div class="container-fluid">
+    <div class="row">
+
+      <!-- LOADING -->
+      <div ng-if="list.length == 0">
+
+        <div id="loader"></div>
+
+      </div>
+      <!-- LOADING -->
+
+
+
+
+
+      <!-- OVERVIEW -->
+      <div class="col-4 computer-session" ng-repeat="computer in list">
+        <div class="card">
+          <div class="card-body p-0">
+            <div class="d-flex">
+
+              <div class="w-100 p-2">
+                <!-- INFORMATION -->
+
+                <div class="" style="height: 25px; vertical-align: middle;">
+
+                  <span class="d-inline-flex" style="height: 15px; font-size: 15px; margin-bottom: 5px" ng-class="{'text-danger': !computer.client.connected, 'text-success': computer.client.connected}">●</span>
+                  <h5 class="computer-session-title mb-0 d-inline-flex"> {{computer.name}}</h5>
+                  <i ng-if="computer.hasError || computer.progress.style == 'bg-danger'" class="fas fa-exclamation-triangle float-right text-danger"></i>
+
+                </div>
+
+
+                <div class="progress mb-2 mt-2" style="height: 2px;">
+                  <div class="progress-bar {{computer.progress.style}}" role="progressbar" style="width: {{computer.progress.value}}%;"></div>
+                </div>
+
+                <table style="width:100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td>Image</td>
+                    <td>{{computer.image.name || "/"}}</td>
+                  </tr>
+                  <tr>
+                    <td>Status</td>
+                    <td ng-switch="computer.state">
+                      <div ng-switch-when="pending">
+                        Pending
+                      </div>
+                      <div ng-switch-when="loading">
+                        Loading <i class="fas fa-spinner fa-spin"></i>
+                      </div>
+                      <div ng-switch-when="prepare">
+                        Prepare (Installation)
+                      </div>
+                      <div ng-switch-when="cloning">
+                        Cloning
+                      </div>
+                      <div ng-switch-when="cloned">
+                        Cloned
+                      </div>
+                      <div ng-switch-when="tasks">
+                        Tasks
+                      </div>
+                      <div ng-switch-when="complete">
+                        Complete
+                      </div>
+                      <div ng-switch-when="diagnostic">
+                        Diagnostic
+                      </div>
+                      <div ng-switch-default>
+                        <i>Unknown</i> ({{computer.state}})
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tasks</td>
+                    <td>
+                      <span ng-if="computer.client.task !== undefined"> {{computer.client.task + 1}} /
+                        {{computer.client.tasks.length}}</span>
+                      <span ng-if="computer.client.task == undefined"> 0 / {{computer.client.tasks.length}}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td>IP</td>
+                    <td>{{computer.ip || "0.0.0.0"}}</td>
+                  </tr>
+                  <tr>
+                    <td>MAC</td>
+                    <td>{{computer.mac}}</td>
+                  </tr>
+                </table>
+                <!--
+                <p>
+                  Image: {{computer.image.name || "/"}}<br />
+                  Status: <i class="fas fa-clone"></i> {{computer.state || "na"}}<br />
+                  <!-- Status: <i class="fas fa-angle-double-down"></i> Dowload<br />
+                    Status: <i class="fas fa-box-open "></i> Restore<br />--
+                </p>
+                <p class="no-margin">
+                  MAC: {{computer.mac}}<br />
+                  IP: {{computer.ip || "0.0.0.0"}}
+                </p>-->
+
+                <!-- INFORMATION -->
+              </div>
+              <div class="flex-shrink-1">
+                <!-- BUTTONS -->
+
+                <button type="button" ng-click="handleInfo();" data-toggle="modal" data-target=".bd-example-modal-lg"
+                  class="btn btn-info btn-block rounded-0" style="height: 50% !important; margin-top: 0; border-top-right-radius: 3px !important"
+                  data-toggle="tooltip" data-placement="right" title="Information">
+                  <i class="fa fa-info-circle"></i>
+                </button>
+
+                <button type="button" ng-click="handleForget();" class="btn btn-dark btn-block rounded-0" style="height: 50% !important; margin-top: 0; border-bottom-right-radius: 3px !important"
+                  data-toggle="tooltip" data-placement="right" title="Entfernen/Vergessen">
+                  <i class="fa fa-minus"></i>
+                </button>
+
+                <!--
+                <button type="button" class="btn btn-secondary btn-block rounded-0" style="margin-top: 0" data-toggle="tooltip"
+                  data-placement="right" title="Bearbeiten">
+                  <i class="fa fa-edit"></i>
+                </button>
+
+                <button type="button" class="btn btn-primary btn-block rounded-0" style="margin-top: 0; border-bottom-right-radius: 3px !important"
+                  data-toggle="tooltip" data-placement="right" title="VNC">
+                  <i class="fa fa-desktop"></i>
+                </button>-->
+
+                <!-- BUTTONS -->
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- OVERVIEW -->
+
+    </div>
+  </div>
+  <!-- CONTAINER -->
+
+  <!-- MODAL -->
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title mb-0">Information</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body p-0">
+
+          <div class="table-responsive" style="overflow-x: scroll;">
+            <table class="table table-striped table-bordered mb-0">
+              <tbody>
+
+                <tr>
+                  <td>Computer</td>
+                  <td>{{info.name}}</td>
+                </tr>
+                <tr>
+                  <td>Image </td>
+                  <td>
+                    {{info.image.name || "/"}}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Tasks </td>
+                  <td>
+                    <ul class="mb-0 pl-3">
+                      <li ng-repeat="task in info.client.tasks">{{task.name}}</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Client Verbunden</td>
+                  <td>{{info.client.connected ? "Ja" : "Nein"}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    Timestamps
+                  </td>
+                  <td class="p-0">
+                    <table class="table table-striped table-bordered mb-0 border-0">
+                      <tr>
+                        <td>Hinzugefügt</td>
+                        <td>{{info.timestamps.created | date:"yyyy.MM.dd '-'' HH:mm" || "/"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Editiert</td>
+                        <td>{{info.timestamps.edited | date:"yyyy.MM.dd '-'' HH:mm" || "/"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Deployed</td>
+                        <td>{{info.timestamps.deployed | date:"yyyy.MM.dd '-'' HH:mm" || "/"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Aktualisiert</td>
+                        <td>{{info.timestamps.updated | date:"yyyy.MM.dd '-'' HH:mm" || "/"}}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>System</td>
+                  <td class="p-0">
+
+                    <table class="table table-striped table-bordered mb-0 border-0">
+                      <tr>
+                        <td>Manufacturer</td>
+                        <td>{{info.systeminfo.system.manufacturer || "/"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Model</td>
+                        <td>{{info.systeminfo.system.model || "/"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Version</td>
+                        <td>{{info.systeminfo.system.version || "/"}}</td>
+                      </tr>
+                      <tr>
+                        <td>UUID</td>
+                        <td>{{info.systeminfo.system.uuid || "/"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Serial</td>
+                        <td>{{info.systeminfo.system.serial || "/"}}</td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Bios</td>
+                  <td class="p-0">
+                    <table class="table table-striped table-bordered mb-0 border-0">
+                      <tr>
+                        <td>Vendor</td>
+                        <td>{{info.systeminfo.bios.vendor || "/"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Version</td>
+                        <td>{{info.systeminfo.bios.version || "/"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Release</td>
+                        <td>{{info.systeminfo.bios.release || "/"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Revision</td>
+                        <td>{{info.systeminfo.bios.revision || "/"}}</td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Mainboard</td>
+                  <td class="p-0">
+                    <table class="table table-striped table-bordered mb-0 border-0">
+                      <tr>
+                        <td>Manufacturer</td>
+                        <td>{{info.systeminfo.baseboard.manufacturer || "/"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Model</td>
+                        <td>{{info.systeminfo.baseboard.model || "/"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Version</td>
+                        <td>{{info.systeminfo.baseboard.version || "/"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Asset tag</td>
+                        <td>{{info.systeminfo.baseboard.assetTag || "/"}}</td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Prozessor</td>
+                  <td class="p-0">
+                    <table class="table table-striped table-bordered mb-0 border-0">
+                      <tr>
+                        <td>Manufacturer</td>
+                        <td>{{info.systeminfo.cpu.manufacturer || "/"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Brand</td>
+                        <td>{{info.systeminfo.cpu.brand || "/"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Speed</td>
+                        <td>{{info.systeminfo.cpu.speed || "0"}} GHz</td>
+                      </tr>
+                      <tr>
+                        <td>Core's</td>
+                        <td>{{info.systeminfo.cpu.cores || "/"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Physikalische Kerne</td>
+                        <td>{{info.systeminfo.cpu.physicalCores || "0"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Anzahl</td>
+                        <td>{{info.systeminfo.cpu.processors || "0"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Vendor</td>
+                        <td>{{info.systeminfo.cpu.vendor || "/"}}</td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Arbeitspeicher</td>
+                  <td class="p-0">
+                    <table class="table table-striped table-bordered mb-0 border-0">
+                      <tr>
+                        <td>RAM (Total)</td>
+                        <td>{{Math.round( (info.systeminfo.mem.total / 1024) / 1024 ) || "0"}} Mb</td>
+                      </tr>
+                      <tr>
+                        <td>Swap (Total)</td>
+                        <td>{{info.systeminfo.mem.swaptotal || "/"}}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Netzwerk</td>
+                  <td class="p-0">
+                    <table class="table table-striped table-bordered mb-0 border-0" ng-repeat="interface in info.systeminfo.networkInterfaces">
+                      <tr>
+                        <td>Name</td>
+                        <td>{{interface.iface}}</td>
+                      </tr>
+                      <tr>
+                        <td>MAC</td>
+                        <td>{{interface.mac}}</td>
+                      </tr>
+                      <tr>
+                        <td>Internal</td>
+                        <td>{{interface.internal}}</td>
+                      </tr>
+                      <tr>
+                        <td>IPv4 (Stand erfassung)</td>
+                        <td>{{interface.ip4}}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Batterie</td>
+                  <td class="p-0">
+                    <table class="table table-striped table-bordered mb-0 border-0">
+                      <tr>
+                        <td>Vorhanden</td>
+                        <td>{{info.systeminfo.battery.hasbattery ? "Ja" : "Nein"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Am Aufladen</td>
+                        <td>{{info.systeminfo.battery.ischarging ? "Ja" : "Nein"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Kapazität (Maximal)</td>
+                        <td>{{info.systeminfo.battery.maxcapacity || "/"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Kapazität (Aktuell)</td>
+                        <td>{{info.systeminfo.battery.currentcapacity || "/"}}</td>
+                      </tr>
+                      <tr>
+                        <td>Geladen zu</td>
+                        <td>{{info.systeminfo.battery.percent || "0"}}%</td>
+                      </tr>
+                      <tr>
+                        <td>Aufgeladen in</td>
+                        <td>{{info.systeminfo.battery.timeremaining}}</td>
+                      </tr>
+                      <tr>
+                        <td>Netzteil Angeschossen</td>
+                        <td>{{info.systeminfo.battery.acconnected ? "Ja" : "Nein"}}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL -->
+
+
+</div>

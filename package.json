@@ -1,0 +1,40 @@
+{
+  "name": "MagicBoot-Server",
+  "version": "0.0.1",
+  "keywords": [
+    "wds",
+    "deploy",
+    "deployment",
+    "network",
+    "boot",
+    "windows",
+    "linux",
+    "wim",
+    "clonezilla",
+    "tasks",
+    "task"
+  ],
+  "repository": "https://github.com/THE-CODE-FACTORY/MagicBoot-Server.git",
+  "author": "Marc Stirner",
+  "contributors": [],
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "bunyan": "^1.8.12",
+    "chalk": "^2.4.1",
+    "dateformat": "^3.0.3",
+    "decompress": "^4.2.0",
+    "dhcp": "^0.2.16",
+    "express": "^4.16.3",
+    "ip": "^1.1.5",
+    "json-over-tcp": "^0.3.2",
+    "merge": "^1.2.0",
+    "merge-anything": "^2.2.0",
+    "mongoose": "^5.2.13",
+    "multer": "^1.3.1",
+    "semver": "^5.6.0",
+    "socket.io": "^2.1.1",
+    "string-template": "^1.0.0",
+    "systeminformation": "^3.45.5",
+    "tftp": "^0.1.2"
+  }
+}

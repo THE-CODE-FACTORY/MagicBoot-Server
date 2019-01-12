@@ -1,0 +1,73 @@
+merge -> entfernen -> Updat thematik
+multer -> file uploads ?!?!?
+
+
+
+
+
+Diagnostic boot -> TFTP/HTTP Abort -> trigger reboot
+TFTP Boot -> UUID/MAC wird nicht ausgefürht -> runter bis aus default
+Client computer: "boot: " prompt -> ". <enter>  -> TFTP crash -> "req.abort(err.ENOENT.message); TypeError: Cannot read property 'ENOENT' of null"
+
+
+
+
+
+UPDATE THEMATIK!
+lib.queue.js
+lib.computer.js
+
+
+
+
+
+lib.queue.js:
+>> Socket error { Error: This socket has been ended by the other party
+
+
+
+
+
+
+DHCP Server fork -> Fehlermeldungen verbessern
+Node Service fork -> after array option (mongodb)
+systeminfomration fork -> promise & uuid (= "-") -> system called multiple times 
+
+
+
+
+
+
+tftp error (sqashfs) -> err weg da kein timeout mehr -> handler entfernen ?
+tftp request abort -> timeout -> error handler (filehandler)
+tftp file handler -> pass ip for better error messages (mommentakn keine computer zuorndung wenn computer unbekannt)
+
+
+shutdown handler -> windows -> handle signals / keine kill signale, STRG+C
+https://stackoverflow.com/questions/37138044/child-process-throw-an-error-write-epipe
+
+
+Startup / index.js
+-> harmony shutdown
+-> NO IPC chanel ?! -> queue event = ersatz (evtl. shutdown handler lösung in windows?)
+
+
+
+State service
+-> 0.0.0.0 blöd weil dann versucht wird an 0.0.0.0 zu senden
+
+
+
+
+
+
+
+
+
+
+----------------------------
+UPCOMING FEATURES:
+- sprachen
+- socket.io adapter (http cluster)
+- plugin system
+- vnc support

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MagicBoot - Server</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../assets/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="../assets/css/all.min.css" />
+  <link rel="stylesheet" href="../assets/css/animate.css" />
+  <link rel="stylesheet" href="../assets/css/app.css" />
+  <!-- CSS -->
+
+  <!-- ANGULAR -->
+  <script src="../assets/js/angular.min.js"></script>
+  <script src="../assets/js/angular-route.min.js"></script>
+  <script src="../assets/js/angular-ui-router.js"></script>
+  <!-- ANGULAR -->
+
+  <!-- JAVSCRIPT -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="../assets/js/jquery-3.3.1.min.js"></script>
+  <script src="../assets/js/popper.min.js"></script>
+  <script src="../assets/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <!-- JAVSCRIPT -->
+
+  <!-- CONTROLLER -->
+  <script src="../assets/js/controller.navigation.js"></script>
+  <script src="../assets/js/controller.session.js"></script>
+  <script src="../assets/js/controller.computer.js"></script>
+  <script src="../assets/js/controller.images.js"></script>
+  <script src="../assets/js/controller.tasks.js"></script>
+  <script src="../assets/js/controller.groups.js"></script>
+  <!-- CONTROLLER -->
+
+</head>
+
+<body ng-app="magic">
+
+
+  <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto" ng-controller="Navigation">
+        <li class="nav-item" ng-class="{'active': isActive('/session')}">
+          <a class="nav-link" ui-sref="session">SESSION</a>
+        </li>
+        <li class="nav-item" ng-class="{'active': isActive('/computer')}">
+          <a class="nav-link" ui-sref="computer">COMPUTER</a>
+        </li>
+        <li class="nav-item" ng-class="{'active': isActive('/images')}">
+          <a class="nav-link" ui-sref="images">IMAGE's</a>
+        </li>
+        <li class="nav-item" ng-class="{'active': isActive('/tasks')}">
+          <a class="nav-link" ui-sref="tasks">TASK's</a>
+        </li>
+        <li class="nav-item" ng-class="{'active': isActive('/groups')}">
+          <a class="nav-link" ui-sref="groups">GROUP's</a>
+        </li>
+      </ul>
+      <form class="form-inline">
+        <button class="btn btn-outline-info hide" type="button" id="asdf">
+          <i class="fas fa-cog"></i>
+        </button>
+      </form>
+    </div>
+  </nav>
+
+  <!-- AJAX PROGRESS -->
+  <div id="ajax-progress" class="hide"></div>
+  <!-- AJAX PROGRESS -->
+
+  <!-- NOTIFICATIONS -->
+  <div id="notifications"></div>
+  <!-- NOTIFICATIONS -->
+
+  <!-- VIEW -->
+  <div id="view" ui-view>
+    Loading...
+  </div>
+  <!-- VIEW -->
+
+  <!-- OVERLAY -->
+  <div id="overlay" class="text-white">
+    <div id="overlay-inner">
+
+      <div class="text-center">
+        <h3 class="text-danger">Verbindung zum Server verloren!</h3>
+        <h5>Dies kann verschiedene gründe haben:</h5>
+      </div>
+
+      <div class="ml-0">
+        <ul>
+          <li>HTTP Server abgestürzt</li>
+          <li>Client ⇄ Server timeout</li>
+          <li>HTTP Dienst neugestartet</li>
+        </ul>
+      </div>
+
+      <div class="text-center hide">
+        <a href="#">Hilfe</a> <b>&#183;</b>
+        <a href="#">GitHub</a> <b>&#183;</b>
+        <a href="#">Wiki</a>
+      </div>
+
+    </div>
+  </div>
+  <!-- OVERLAY -->
+
+
+
+
+
+  <footer>
+    <div class="container-fluid">
+      MagicBoot, developed with
+      <span class="text-danger">&#10084;</span> by Marc Stirner
+
+      <a href="#" class="pull-right">GitHub</a> ●
+      <a href="#" class="pull-right">Readme</a>
+
+    </div>
+  </footer>
+
+
+</body>
+
+</html>

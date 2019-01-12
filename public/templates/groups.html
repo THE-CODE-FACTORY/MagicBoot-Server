@@ -1,0 +1,119 @@
+<div class="" ng-controller="Groups">
+    <div class="container-fluid">
+        <!-- ADD NEW -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="m-0">
+
+                            Gruppe Hinzufügen
+
+                            <button class="btn btn-outline-primary float-right" data-toggle="collapse" data-target="#addTask"
+                                aria-expanded="false" aria-controls="addTask">
+
+                                <i class="fas fa-sort-down"></i>
+
+                            </button>
+
+                        </h5>
+                    </div>
+                    <div class="card-body collapse" id="addTask">
+
+                        <div class="row mb-0">
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Name" ng-model="add.name">
+                            </div>
+                            <div class="col">
+
+                                <select class="custom-select" size="8" multiple ng-options="task._id as task.name for task in tasks"
+                                    ng-model="add.tasks"></select>
+
+
+                            </div>
+                            <div class="col">
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="Beschreibung"
+                                    ng-model="add.description"></textarea>
+                            </div>
+                            <div class="col">
+                                <button type="button" class="btn btn-success" ng-click="handleAdd();">Hinzufügen</button>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ADD NEW -->
+
+        <!-- TABLE -->
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="table-responsive" style="overflow-x: scroll;">
+                            <table class="table table-striped table-bordered table-hover mb-0">
+                                <thead>
+
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Tasks</th>
+                                        <th scope="col">Beschreibung</th>
+                                        <th scope="col">Aktion</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+
+                                    <tr ng-repeat="group in list | orderBy: desc " ng-init="edit = false; selected = false;">
+                                        <th scope="row">{{$index + 1}}</th>
+                                        <th>
+
+                                            <input type="text" class="form-control" ng-model="group.name" ng-disabled="!edit" />
+
+                                        </th>
+                                        <th>
+
+                                            <select class="custom-select" size="8" multiple ng-options="task._id as task.name for task in tasks"
+                                                ng-model="group.tasks" ng-disabled="!edit"></select>
+
+
+                                        </th>
+                                        <th>
+
+                                            <textarea class="form-control" ng-disabled="!edit" ng-model="group.description"></textarea>
+
+                                        </th>
+                                        <th>
+
+                                            <button type="button" ng-click="handleDelete();" class="btn btn-outline-danger"
+                                                data-toggle="tooltip" data-placement="bottom" title="Lösche Computer">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+
+                                            <button type="button" ng-click="handleEdit(); edit = !edit;" class="btn btn-outline-info"
+                                                data-toggle="tooltip" data-placement="bottom" title="Bearbeite/Speicher Computer">
+                                                <i class="fas fa-edit" ng-if="!edit"></i>
+                                                <i class="fas fa-check" ng-if="edit"></i>
+                                            </button>
+
+                                        </th>
+                                    <tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- TABLE -->
+
+    </div>
+</div>

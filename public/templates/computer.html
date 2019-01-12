@@ -1,0 +1,338 @@
+<div class="" ng-controller="Computer">
+
+  <!-- CONTAINER -->
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+
+            <div class="table-responsive" style="overflow-x: scroll;">
+              <table class="table table-striped table-bordered table-hover mb-0">
+                <thead>
+
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col" class="hide"><i class="fa fa-check-square"></i></th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Hostname</th>
+                    <th scope="col" class="hide">MAC</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Gruppen</th>
+                    <th scope="col">Tasks</th>
+                    <th scope="col">Beschreibung</th>
+                    <th scope="col">Aktion</th>
+                  </tr>
+
+                </thead>
+                <tbody>
+
+                  <tr ng-repeat="computer in list | orderBy:'name'" ng-init="edit = false; selected = false;">
+                    <th scope="row">{{$index + 1}}</th>
+                    <th class="hide">
+
+                      <input type="checkbox" ng-model="selected" ng-click="select()" />
+
+                    </th>
+                    <td>
+
+                      <input type="text" class="form-control" ng-model="computer.name" ng-disabled="!edit" />
+
+                    </td>
+                    <td>
+
+                      <input type="text" class="form-control" ng-model="computer.hostname" maxlength="15" ng-disabled="!edit" />
+
+                    </td>
+                    <td class="hide">{{computer.mac}}</td>
+
+                    <td>
+
+                      <select class="custom-select" ng-options="image._id as image.name for image in images" ng-model="computer.image._id"
+                        ng-disabled="!edit"></select>
+
+                    </td>
+                    <td>
+
+
+                      <select class="custom-select" size="8" multiple ng-options="group._id as group.name for group in groups"
+                        ng-model="computer.groups" ng-disabled="!edit"></select>
+
+                    </td>
+                    <td>
+
+                      <select class="custom-select" size="8" multiple ng-options="task._id as task.name for task in tasks"
+                        ng-model="computer.tasks" ng-disabled="!edit"></select>
+
+                    </td>
+                    <td>
+
+                      <textarea class="form-control" ng-disabled="!edit" ng-model="computer.description"></textarea>
+
+                    </td>
+                    <td>
+
+                      <button type="button" ng-click="handleHardware();" data-toggle="modal" data-target=".bd-example-modal-lg"
+                        class="btn btn-outline-secondary" data-toggle="tooltip" data-placement="bottom" title="System Hardware">
+                        <i class="fas fa-info-circle "></i>
+                      </button>
+
+                      <button type="button" ng-click="handleDelete();" class="btn btn-outline-danger" data-toggle="tooltip"
+                        data-placement="bottom" title="Lösche Computer">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+
+                      <button type="button" ng-click="handleEdit(); edit = !edit;" class="btn btn-outline-info"
+                        data-toggle="tooltip" data-placement="bottom" title="Bearbeite/Speicher Computer">
+                        <i class="fas fa-edit" ng-if="!edit"></i>
+                        <i class="fas fa-check" ng-if="edit"></i>
+                      </button>
+
+                      <button type="button" ng-click="handleOptions();" class="btn btn-outline-primary hide"
+                        data-toggle="tooltip" data-placement="bottom" title="Advanced Options">
+                        <i class="fas fa-bookmark"></i>
+                      </button>
+
+                      <button type="button" ng-click="handleDiagnostic();" class="btn btn-outline-dark hide"
+                        data-toggle="tooltip" data-placement="bottom" title="Diagnostic Boot">
+                        <i class="fas fa-heartbeat"></i>
+                      </button>
+
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <!-- CONTAINER -->
+
+  <!-- MODAL -->
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title mb-0">Hardware information</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body p-0">
+
+          <table class="table table-striped table-bordered mb-0">
+            <tbod>
+
+              <tr>
+                <td>System</td>
+                <td class="p-0">
+
+                  <table class="table table-striped table-bordered mb-0 border-0">
+                    <tr>
+                      <td>Manufacturer</td>
+                      <td>{{info.system.manufacturer || "/"}}</td>
+                    </tr>
+                    <tr>
+                      <td>Model</td>
+                      <td>{{info.system.model || "/"}}</td>
+                    </tr>
+                    <tr>
+                      <td>Version</td>
+                      <td>{{info.system.version || "/"}}</td>
+                    </tr>
+                    <tr>
+                      <td>UUID</td>
+                      <td>{{info.system.uuid || "/"}}</td>
+                    </tr>
+                    <tr>
+                      <td>Serial</td>
+                      <td>{{info.system.serial || "/"}}</td>
+                    </tr>
+                  </table>
+
+                </td>
+              </tr>
+
+              <tr>
+                <td>Bios</td>
+                <td class="p-0">
+                  <table class="table table-striped table-bordered mb-0 border-0">
+                    <tr>
+                      <td>Vendor</td>
+                      <td>{{info.bios.vendor || "/"}}</td>
+                    </tr>
+                    <tr>
+                      <td>Version</td>
+                      <td>{{info.bios.version || "/"}}</td>
+                    </tr>
+                    <tr>
+                      <td>Release</td>
+                      <td>{{info.bios.release || "/"}}</td>
+                    </tr>
+                    <tr>
+                      <td>Revision</td>
+                      <td>{{info.bios.revision || "/"}}</td>
+                    </tr>
+                  </table>
+
+                </td>
+              </tr>
+
+              <tr>
+                <td>Mainboard</td>
+                <td class="p-0">
+                  <table class="table table-striped table-bordered mb-0 border-0">
+                    <tr>
+                      <td>Manufacturer</td>
+                      <td>{{info.baseboard.manufacturer || "/"}}</td>
+                    </tr>
+                    <tr>
+                      <td>Model</td>
+                      <td>{{info.baseboard.model || "/"}}</td>
+                    </tr>
+                    <tr>
+                      <td>Version</td>
+                      <td>{{info.baseboard.version || "/"}}</td>
+                    </tr>
+                    <tr>
+                      <td>Asset tag</td>
+                      <td>{{info.baseboard.assetTag || "/"}}</td>
+                    </tr>
+                  </table>
+
+                </td>
+              </tr>
+
+              <tr>
+                <td>Prozessor</td>
+                <td class="p-0">
+                  <table class="table table-striped table-bordered mb-0 border-0">
+                    <tr>
+                      <td>Manufacturer</td>
+                      <td>{{info.cpu.manufacturer || "/"}}</td>
+                    </tr>
+                    <tr>
+                      <td>Brand</td>
+                      <td>{{info.cpu.brand || "/"}}</td>
+                    </tr>
+                    <tr>
+                      <td>Speed</td>
+                      <td>{{info.cpu.speed || "0"}} GHz</td>
+                    </tr>
+                    <tr>
+                      <td>Core's</td>
+                      <td>{{info.cpu.cores || "/"}}</td>
+                    </tr>
+                    <tr>
+                      <td>Physikalische Kerne</td>
+                      <td>{{info.cpu.physicalCores || "0"}}</td>
+                    </tr>
+                    <tr>
+                      <td>Anzahl</td>
+                      <td>{{info.cpu.processors || "0"}}</td>
+                    </tr>
+                    <tr>
+                      <td>Vendor</td>
+                      <td>{{info.cpu.vendor || "/"}}</td>
+                    </tr>
+                  </table>
+
+                </td>
+              </tr>
+
+              <tr>
+                <td>Arbeitspeicher</td>
+                <td class="p-0">
+                  <table class="table table-striped table-bordered mb-0 border-0">
+                    <tr>
+                      <td>RAM (Total)</td>
+                      <td>{{Math.round( (info.mem.total / 1024) / 1024) || "0"}} Mb</td>
+                    </tr>
+                    <tr>
+                      <td>Swap (Total)</td>
+                      <td>{{info.mem.swaptotal || "/"}}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Netzwerk</td>
+                <td class="p-0">
+                  <table class="table table-striped table-bordered mb-0 border-0" ng-repeat="interface in info.networkInterfaces">
+                    <tr>
+                      <td>Name</td>
+                      <td>{{interface.iface}}</td>
+                    </tr>
+                    <tr>
+                      <td>MAC</td>
+                      <td>{{interface.mac}}</td>
+                    </tr>
+                    <tr>
+                      <td>Internal</td>
+                      <td>{{interface.internal}}</td>
+                    </tr>
+                    <tr>
+                      <td>IPv4 (Stand erfassung)</td>
+                      <td>{{interface.ip4}}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Batterie</td>
+                <td class="p-0">
+                  <table class="table table-striped table-bordered mb-0 border-0">
+                    <tr>
+                      <td>Vorhanden</td>
+                      <td>{{info.battery.hasbattery ? "Ja" : "Nein"}}</td>
+                    </tr>
+                    <tr>
+                      <td>Am Aufladen</td>
+                      <td>{{info.battery.ischarging ? "Ja" : "Nein"}}</td>
+                    </tr>
+                    <tr>
+                      <td>Kapazität (Maximal)</td>
+                      <td>{{info.battery.maxcapacity || "/"}}</td>
+                    </tr>
+                    <tr>
+                      <td>Kapazität (Aktuell)</td>
+                      <td>{{info.battery.currentcapacity || "/"}}</td>
+                    </tr>
+                    <tr>
+                      <td>Geladen zu</td>
+                      <td>{{info.battery.percent || "0"}}%</td>
+                    </tr>
+                    <tr>
+                      <td>Aufgeladen in</td>
+                      <td>{{info.battery.timeremaining}}</td>
+                    </tr>
+                    <tr>
+                      <td>Netzteil Angeschossen</td>
+                      <td>{{info.battery.acconnected ? "Ja" : "Nein"}}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+            </tbod>
+          </table>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- MODAL -->
+
+</div>
