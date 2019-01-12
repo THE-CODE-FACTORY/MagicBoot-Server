@@ -20,4 +20,4 @@ checksum.json
 package-lock.json
 
 # ignore tftp-root
-tftp-root/*
+#tftp-root/*

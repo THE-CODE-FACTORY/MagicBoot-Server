@@ -10,7 +10,7 @@ To complete/customize your installation, post-install tasks can be runned after 
 ### Before you start
 MagicBoot requires MongoDB & nodejs.\
 MongoDB: https://www.mongodb.com/, the community version should do the job.\
-NodeJS: https://nodejs.org/, the LTS version is recomended.
+NodeJS: https://nodejs.org/, LTS version is recomended.
 
 
 ### Installation
@@ -45,7 +45,7 @@ NodeJS: https://nodejs.org/, the LTS version is recomended.
 
 
 #### Todo's
-- langauges pack
+- languages pack
 - code optimization
 - dashboard
 - http cluster (multi core use)
@@ -57,8 +57,15 @@ NodeJS: https://nodejs.org/, the LTS version is recomended.
 Early development, still functioning
 
 
+#### Build with/based on
+- AngularJS
+- syslinux/pxelinux
+- Windows PE
+- Clonezilla
+
+
 #### Special thanks to:
 - [infusion](https://github.com/infusion), dhcp (https://github.com/infusion/node-dhcp)
-- [jue89](https://github.com/jue89), tftp (https://github.com/jue89/node-tftp-server)
+- [gagle](https://github.com/gagle), tftp (https://github.com/gagle/node-tftp)
 
 *no logical order (random)*
