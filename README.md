@@ -23,11 +23,11 @@ NodeJS: https://nodejs.org/, the LTS version is recomended.
 - nodejs 10.15.0LTS
 
 ### Webinterface
-![Alt text](public/assets/img/session.jpg?raw=true "Session")
-![Alt text](public/assets/img/computer.jpg?raw=true "Computer")
-![Alt text](public/assets/img/images.jpg?raw=true "Images")
-![Alt text](public/assets/img/groups.jpg?raw=true "groups")
-![Alt text](public/assets/img/tasks.jpg?raw=true "Tasks")
+![Session](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/session.png "Session")
+![Computer](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/computer.png "Computer")
+![Images](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/images.png "Images")
+![Groups](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/groups.png "groups")
+![Tasks](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/tasks.png "Tasks")
 
 #### Todo's
 - langauges pack
@@ -43,4 +43,5 @@ Early development, still functioning
 #### Special thanks to:
 - [infusion](https://github.com/infusion), dhcp (https://github.com/infusion/node-dhcp)
 - [jue89](https://github.com/jue89), tftp (https://github.com/jue89/node-tftp-server)
+
 *no logical order (random)*
