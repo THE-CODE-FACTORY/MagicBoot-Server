@@ -59,7 +59,7 @@ Early development, still functioning
 
 #### Build with/based on
 - AngularJS
-- syslinux/pxelinux
+- syslinux/pxelinuxa
 - Windows PE
 - Clonezilla
 
