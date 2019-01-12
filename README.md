@@ -30,9 +30,8 @@ NodeJS: https://nodejs.org/, LTS version is recomended.
 
 ###### Session (Computer in queue)
 ![Session](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/session.png "Session")
-![Session](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/session%20-%201.png "Session")
-![Session](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/session%20-%202.png "Session")
-![Session](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/session%20-%203.png "Session")
+![Session](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/session-1.png "Session")
+![Session](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/session-2.png "Session")
 
 ###### Computer
 ![Computer](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/computer.png "Computer")
