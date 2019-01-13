@@ -1,0 +1,50 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-6">
+
+            <div class="card">
+                <div class="card-body">
+
+
+
+                    <form>
+
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label>Server</label>
+                                <input type="text" class="form-control" ng-model="settings.services.tftp.host">
+                            </div>
+                            <div class="col-6">
+                                <label>Port</label>
+                                <input type="number" class="form-control" ng-model="settings.services.tftp.port">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>TFTP Root</label>
+                            <input type="text" class="form-control" ng-model="settings.services.tftp.root">
+                        </div>
+
+                        <div class="form-group form-check">
+                            <input type="checkbox" ng-model="settings.services.tftp.listen" class="form-check-input">
+                            <label class="form-check-label">Listen on startup</label>
+                        </div>
+
+                        <button type="button" class="btn btn-primary" ng-click="save();">Speichern</button>
+
+                    </form>
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-6">
+            tftp
+        </div>
+    </div>
+
+</div>

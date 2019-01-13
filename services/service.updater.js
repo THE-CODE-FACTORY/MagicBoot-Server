@@ -169,5 +169,5 @@ setInterval(function () {
 
 
 // emitted from http api ?!?
-queue.emit("updater.check");
+//queue.emit("updater.check");
 //queue.emit("updater.load");

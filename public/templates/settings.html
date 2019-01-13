@@ -1,0 +1,128 @@
+<div class="container-fluid">
+
+    <!-- DATENBANK -->
+    <div class="row">
+
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Datenbank</h5>
+                </div>
+                <div class="card-body">
+
+                    <form>
+
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label>Server</label>
+                                <input type="text" class="form-control" ng-model="settings.database.host">
+                            </div>
+                            <div class="col-6">
+                                <label>Port</label>
+                                <input type="number" class="form-control" ng-model="settings.database.port">
+                            </div>
+                        </div>
+
+
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- DATENBANK -->
+
+        <!-- LOGGER -->
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Logger</h5>
+                </div>
+                <div class="card-body">
+
+                    <form>
+
+                        <div class="form-group">
+
+                            <label>Level</label>
+                            <select ng-model="settings.logger.level" class="form-control">
+                                <option value="trace">Trace</option>
+                                <option value="debug">Debug</option>
+                                <option value="info">Info</option>
+                                <option value="warn">Warning</option>
+                                <option value="debug">Error</option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Format</label>
+                            <input type="text" class="form-control" ng-model="settings.logger.time">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Pfad</label>
+                            <input type="text" class="form-control" ng-model="settings.logger.path">
+                        </div>
+
+
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- LOGGER -->
+
+        <!-- STARTUP -->
+        <div class="col-6">
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Start</h5>
+                </div>
+                <div class="card-body">
+
+                    <form>
+
+                        <div class="form-group form-check">
+                            <input type="checkbox" ng-model="settings.startup.harmony" class="form-check-input">
+                            <label class="form-check-label">Harmony</label>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Verzögerung</label>
+                            <input type="number" class="form-control" ng-model="settings.startup.delay">
+                        </div>
+
+                        <div class="form-group form-check">
+                            <input type="checkbox" ng-model="settings.startup.restart" class="form-check-input">
+                            <label class="form-check-label">Dienst neustartet nach crash</label>
+                        </div>
+
+
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                    </form>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- STARTUP -->
+
+    <button type="button" class="btn btn-primary" ng-click="save();">Speichern</button>
+
+</div>

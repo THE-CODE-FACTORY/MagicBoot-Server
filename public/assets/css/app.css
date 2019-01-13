@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito|Quicksand|Source+Sans+Pro|Work+Sans|ZCOOL+QingKe+HuangYou');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
 html{
   min-height: 100%;
@@ -14,9 +15,12 @@ body{
   background-color: #eee;
   overflow-y: scroll;
   overflow-x: hidden;
+
+  font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+
   /*font-family: 'Source Sans Pro', sans-serif;*/
 
-  font-family: 'Nunito', sans-serif;
+  /*font-family: 'Nunito', sans-serif;*/
 /*
   font-family: 'Work Sans', sans-serif;*/
 /*
