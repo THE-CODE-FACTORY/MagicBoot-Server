@@ -8,7 +8,7 @@ To complete/customize your installation, post-install tasks can be runned after 
 
 
 ### Before you start
-MagicBoot requires MongoDB & nodejs.\
+MagicBoot requires MongoDB & NodeJS.\
 MongoDB: https://www.mongodb.com/, the community version should do the job.\
 NodeJS: https://nodejs.org/, LTS version recomended.
 
@@ -25,10 +25,16 @@ NodeJS: https://nodejs.org/, LTS version recomended.
 {
   "interface": "eth0",
   "services": {
+    "autodiscover": {
+      "listen": false,
+      "interval": 5000,
+      "broadcast": "172.16.0.255",
+      "host": "172.16.0.1"
+    },
     "updater": {
       "listen": true,
       "interval": 86400000,
-      "lastCheck": 1547332949747
+      "lastCheck": 1547378506068
     },
     "proxy": {
       "listen": false
@@ -158,7 +164,7 @@ Don't forget to add your credentials in the `config.json`
 - http cluster (multi core use)
 - plugin system (VNC)
 - auto updater 
-- autodiscover (zero conf for client)
+- ~~autodiscover (zero conf for client)~~
 
 
 #### Note

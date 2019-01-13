@@ -162,10 +162,12 @@ const shutdown = function shutdown(name) {
  * - tftp (PXE Boot files)
  * - dhcp (ip addresses & boot file)
  * - proxy (VNC/loading state)
+ * - updater (keep the software up to date)
+ * - autodiscover (client)
  * @returns {undefined}
  */
 const forkServices = function forkServices() {
-	["http", "state", "tftp", "dhcp", "proxy", "updater"].forEach(function (name, index) {
+	["http", "state", "tftp", "dhcp", "proxy", "updater", "autodiscover"].forEach(function (name, index) {
 
 
 		if (config.services[name] && config.services[name].listen) {
@@ -249,7 +251,6 @@ fs.stat("./config.json", function (err, stats) {
 				forkServices();
 			}, timeout);
 
-
 		}
 
 
@@ -258,6 +259,8 @@ fs.stat("./config.json", function (err, stats) {
 
 
 // handle shutdown / kill signal
+// @FIXME Garbage on windows:
+// childs exit with strage exit code...
 process.stdin.resume();
 
 // kill signal
