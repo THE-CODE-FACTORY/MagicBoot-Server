@@ -8,7 +8,7 @@ const fs = require("fs");
 // connect to server
 queue.connect();
 
-var remotePath = "";
+var updatePath = "";
 
 
 const check = require("../lib/updater.check.js")(log.create("check"), queue);
@@ -49,7 +49,7 @@ fs.stat(path.join(__dirname, "../checksum.json"), function (err) {
 
     }
 
-    if (Date.now() - stat.mdate >= 86400000) {
+    if (Date.now() - cfg.lastCheck >= cfg.interval) {
 
         // feedback
         log.debug("Create checksum.json for local installation");
@@ -92,6 +92,8 @@ queue.on("updater.check", function () {
 
                 console.log("update avb")
 
+                queue.emit("updater.load");
+
             } else {
 
                 console.log("no update");
@@ -124,7 +126,8 @@ queue.on("updater.load", function () {
 
                     // read for installation
                     log.debug("Ready for installation");
-                    remotePath = root;
+                    queue.emit("updater.install");
+                    updatePath = root;
 
                 }
             });
@@ -136,7 +139,7 @@ queue.on("updater.load", function () {
 
 
 queue.on("updater.install", function () {
-    if (updatePath = "") {
+    if (updatePath === "") {
 
         log.error("Update not ready for instllation");
 
@@ -144,8 +147,6 @@ queue.on("updater.install", function () {
 
         console.log("----- INSTALL !!! COPY!!!");
         console.log("Dry run! uncomment, l:148");
-
-        return;
 
         install(updatePath, function (err) {
 
@@ -168,5 +169,5 @@ setInterval(function () {
 
 
 // emitted from http api ?!?
-//queue.emit("updater.check");
+queue.emit("updater.check");
 //queue.emit("updater.load");

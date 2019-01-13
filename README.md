@@ -113,7 +113,7 @@ NodeJS: https://nodejs.org/, LTS version recomended.
 ```
 The settings works "out-of-the-box".\
 Bad is, that i hard-coded the server ip in the windows pe image.\
-So you have to use this ip range, till i add a autodiscover method.\
+So you have to use this ip range, till i add a autodiscover method.
 
 172.16.0.1:     Server\
 172.16.0.254:   Gateway
@@ -121,7 +121,7 @@ So you have to use this ip range, till i add a autodiscover method.\
 
 ### Image storage
 As storage for images, we use a simple NTFS/SMB/SAMBA share.\
-Create a shared drive and create a user with read access.
+Create a shared drive and create a user with read access.\
 Don't forget to add your credentials in the `config.json`
 
 
