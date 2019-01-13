@@ -10,14 +10,119 @@ To complete/customize your installation, post-install tasks can be runned after 
 ### Before you start
 MagicBoot requires MongoDB & nodejs.\
 MongoDB: https://www.mongodb.com/, the community version should do the job.\
-NodeJS: https://nodejs.org/, LTS version is recomended.
+NodeJS: https://nodejs.org/, LTS version recomended.
 
 
 ### Installation
 - Download the repository
 - Extract to any location
 - run `npm install` in the directory
+- create config.json
 - to start the server `node index.js`
+
+### Configuration
+```json
+{
+  "interface": "eth0",
+  "services": {
+    "updater": {
+      "listen": true,
+      "interval": 86400000,
+      "lastCheck": 1547332949747
+    },
+    "proxy": {
+      "listen": false
+    },
+    "http": {
+      "listen": true,
+      "host": "0.0.0.0",
+      "port": 80,
+      "cluster": false
+    },
+    "tftp": {
+      "listen": true,
+      "host": "172.16.0.1",
+      "port": 69,
+      "root": "./tftp-root"
+    },
+    "dhcp": {
+      "listen": true,
+      "host": "0.0.0.0",
+      "port": 67,
+      "options": {
+        "range": [
+          "172.16.0.100",
+          "172.16.0.200"
+        ],
+        "netmask": "255.255.255.0",
+        "router": [
+          "172.16.0.254"
+        ],
+        "dns": [
+          "9.9.9.9",
+          "1.1.1.1",
+          "8.8.8.8"
+        ],
+        "broadcast": "172.16.0.255",
+        "server": "172.16.0.1",
+        "leaseTime": 86400
+      }
+    },
+    "state": {
+      "listen": false,
+      "host": "172.16.0.1",
+      "port": 10242
+    }
+  },
+  "logger": {
+    "level": "trace",
+    "time": "yyyy.mm.dd - HH:MM:ss.l",
+    "path": "./log"
+  },
+  "database": {
+    "host": "127.0.0.1",
+    "port": 27017,
+    "authentication": {
+      "enabled": false,
+      "username": "",
+      "password": ""
+    }
+  },
+  "images": {
+    "external": true,
+    "location": "\\\\172.16.0.1\\images",
+    "type": "cifs",
+    "authentication": {
+      "enabled": true,
+      "domain": "",
+      "username": "deployment",
+      "password": "Pa$$w0rd"
+    },
+    "proxy": {
+      "enabled": false,
+      "host": "192.168.2.110",
+      "port": 8445
+    }
+  },
+  "startup": {
+    "harmony": false,
+    "delay": 2000,
+    "restart": false
+  }
+}
+```
+The settings works "out-of-the-box".\
+Bad is, that i hard-coded the server ip in the windows pe image.\
+So you have to use this ip range, till i add a autodiscover method.\
+
+172.16.0.1:     Server\
+172.16.0.254:   Gateway
+
+
+### Image storage
+As storage for images, we use a simple NTFS/SMB/SAMBA share.\
+Create a shared drive and create a user with read access.
+Don't forget to add your credentials in the `config.json`
 
 
 ### Tested on
@@ -53,6 +158,7 @@ NodeJS: https://nodejs.org/, LTS version is recomended.
 - http cluster (multi core use)
 - plugin system (VNC)
 - auto updater 
+- autodiscover (zero conf for client)
 
 
 #### Note
@@ -61,7 +167,7 @@ Early development, still functioning
 
 #### Build with/based on
 - AngularJS
-- syslinux/pxelinuxa
+- syslinux/pxelinux
 - Windows PE
 - Clonezilla
 
