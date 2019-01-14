@@ -3,9 +3,11 @@ app.controller('Settings', function ($scope, api) {
 
     api.get("/settings", function (err, data) {
 
+        console.log(data)
+
         $scope.settings = data;
 
-    })
+    });
 
 
     $scope.save = function () {
@@ -15,6 +17,5 @@ app.controller('Settings', function ($scope, api) {
 
         });
     }
-
 
 });

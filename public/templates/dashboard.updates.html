@@ -2,15 +2,54 @@
 
     <!-- DATENBANK -->
     <div class="row">
-        <div class="col-12">
+        <div class="col-4">
 
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0">Datenbank</h5>
+                    <h5 class="mb-0">Einstellungen</h5>
                 </div>
                 <div class="card-body">
 
 
+                    <div class="form-group">
+                        <label>Interval (in Stunden)</label>
+                        <input type="number" class="form-control" ng-model="settings.services.updater.interval">
+                    </div>
+
+                    <div class="form-group form-check">
+                        <input type="checkbox" ng-model="settings.services.updater.listen" class="form-check-input">
+                        <label class="form-check-label">Listen on startup</label>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" ng-click="save();">Speichern</button>
+
+                </div>
+            </div>
+
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5 class="mb-0">Herrunterladen</h5>
+                </div>
+                <div class="card-body">
+
+                    <button type="button" class="btn btn-primary btn-block" ng-click="check();">Überprüfen</button>
+                    <button type="button" class="btn btn-info btn-block" ng-click="load();">Herunterladen</button>
+                    <button type="button" class="btn btn-secondary btn-block" ng-click="install();">Installieren</button>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-8">
+
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Release notes</h5>
+                </div>
+                <div class="card-body">
+
+                    ....
 
                 </div>
             </div>

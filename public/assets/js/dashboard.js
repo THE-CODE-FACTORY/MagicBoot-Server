@@ -20,14 +20,10 @@ app.factory('$xhrFactory', function () {
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
+  $urlRouterProvider.otherwise('/overview');
 
-	/**
-	 * ROOT
-	 * @returns {undefined}
-	 */
+  // other 
   (function () {
-
-    $urlRouterProvider.otherwise('/overview');
 
     $stateProvider.state("overview", {
       url: "/overview",
@@ -47,33 +43,84 @@ app.config(function ($stateProvider, $urlRouterProvider) {
       controller: "Updates"
     });
 
+    $stateProvider.state("logfiles", {
+      url: "/logfiles",
+      templateUrl: "../templates/dashboard.logfiles.html",
+      controller: "Logfiles"
+    });
 
-    $stateProvider.state("settings", {
-      url: "/settings",
+  })();
+
+
+  // settings router
+  (function () {
+
+    $stateProvider.state("settings/language", {
+      url: "/settings/language",
       //redirectTo: 'settings.dashboard',
-      templateUrl: "../templates/settings.html",
+      templateUrl: "../templates/settings.language.html",
       controller: "Settings"
     });
 
-    $stateProvider.state("settings/dhcp", {
-      url: "/settings/dhcp",
+    $stateProvider.state("settings/network", {
+      url: "/settings/network",
       //redirectTo: 'settings.dashboard',
-      templateUrl: "../templates/settings.dhcp.html",
+      templateUrl: "../templates/settings.network.html",
       controller: "Settings"
     });
 
-
-    $stateProvider.state("settings/tftp", {
-      url: "/settings/tftp",
+    $stateProvider.state("settings/database", {
+      url: "/settings/database",
       //redirectTo: 'settings.dashboard',
-      templateUrl: "../templates/settings.tftp.html",
+      templateUrl: "../templates/settings.database.html",
       controller: "Settings"
     });
 
-    $stateProvider.state("settings/http", {
-      url: "/settings/http",
+    $stateProvider.state("settings/images", {
+      url: "/settings/images",
       //redirectTo: 'settings.dashboard',
-      templateUrl: "../templates/settings.http.html",
+      templateUrl: "../templates/settings.images.html",
+      controller: "Settings"
+    });
+
+    $stateProvider.state("settings/startup", {
+      url: "/settings/startup",
+      //redirectTo: 'settings.dashboard',
+      templateUrl: "../templates/settings.startup.html",
+      controller: "Settings"
+    });
+
+  })();
+
+
+  // service router
+  (function () {
+
+    $stateProvider.state("service/dhcp", {
+      url: "/service/dhcp",
+      //redirectTo: 'settings.dashboard',
+      templateUrl: "../templates/service.dhcp.html",
+      controller: "Settings"
+    });
+
+    $stateProvider.state("service/tftp", {
+      url: "/service/tftp",
+      //redirectTo: 'settings.dashboard',
+      templateUrl: "../templates/service.tftp.html",
+      controller: "Settings"
+    });
+
+    $stateProvider.state("service/http", {
+      url: "/service/http",
+      //redirectTo: 'settings.dashboard',
+      templateUrl: "../templates/service.http.html",
+      controller: "Settings"
+    });
+
+    $stateProvider.state("service/autodiscover", {
+      url: "/service/http",
+      //redirectTo: 'settings.dashboard',
+      templateUrl: "../templates/service.autodiscover.html",
       controller: "Settings"
     });
 

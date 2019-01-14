@@ -8,7 +8,7 @@ const fs = require("fs");
 // connect to server
 queue.connect();
 
-var updatePath = "";
+var updateLocation = "";
 
 
 const check = require("../lib/updater.check.js")(log.create("check"), queue);
@@ -49,7 +49,8 @@ fs.stat(path.join(__dirname, "../checksum.json"), function (err) {
 
     }
 
-    if (Date.now() - cfg.lastCheck >= cfg.interval) {
+    /*
+    if (Date.now() - cfg.lastCheck >= cfg.interval * 1000 * 60 * 60) {
 
         // feedback
         log.debug("Create checksum.json for local installation");
@@ -66,7 +67,7 @@ fs.stat(path.join(__dirname, "../checksum.json"), function (err) {
             }
         });
 
-    }
+    }*/
 
 });
 
@@ -76,58 +77,56 @@ queue.on("updater.check", function () {
     // set timestamp
     cfg.lastCheck = Date.now();
 
-    // wirte to config.json
-    fs.writeFile(path.join(__dirname, "../config.json"), JSON.stringify(config, null, 2), function (err) {
+    // check for updates in remote package.json
+    check(function (available) {
+        fs.writeFile(path.join(__dirname, "../config.json"), JSON.stringify(config, null, 2), function (err) {
 
-        if (err) {
-            return log.warn(err, "Could not update 'lastCheck' timestamp");
-        }
+            if (err) {
+                log.warn(err, "Could not update 'lastCheck' timestamp");
+            }
 
-        // feedback
-        log.trace("Updated 'lastCheck' timestamp to %d", cfg.lastCheck);
-
-        // check for updates
-        check(function (available) {
             if (available) {
 
                 console.log("update avb")
-
-                queue.emit("updater.load");
+                //queue.emit("updater.load");
+                // create checksum.json ?!
+                // besser als in fs.stat....
 
             } else {
 
                 console.log("no update");
 
             }
+
         });
-
-
     });
 
 });
 
 
 queue.on("updater.load", function () {
-    load(function (err, root) {
+    load(function (err, location) {
         if (err) {
 
             log.error("Could not download update");
 
         } else {
 
-            log.debug("Created checksum.json for update files in %s", root);
+            log.info("Update downloaded");
+            log.debug("Created checksum.json for update files in %s", location);
 
-            checksum(root, function (err) {
+            checksum(location, function (err) {
                 if (err) {
 
                     log.warn(err, "Could not create checksum.json for remote");
 
                 } else {
 
-                    // read for installation
+                    // feedback
                     log.debug("Ready for installation");
-                    queue.emit("updater.install");
-                    updatePath = root;
+
+                    //queue.emit("updater.install");
+                    updateLocation = location;
 
                 }
             });
@@ -139,7 +138,7 @@ queue.on("updater.load", function () {
 
 
 queue.on("updater.install", function () {
-    if (updatePath === "") {
+    if (updateLocation === "") {
 
         log.error("Update not ready for instllation");
 
@@ -147,8 +146,9 @@ queue.on("updater.install", function () {
 
         console.log("----- INSTALL !!! COPY!!!");
         console.log("Dry run! uncomment, l:148");
+        return;
 
-        install(updatePath, function (err) {
+        install(updateLocation, function (err) {
 
             console.log(err, "Update install cb")
 
@@ -158,10 +158,11 @@ queue.on("updater.install", function () {
 });
 
 
-setInterval(function () {
-    if ((Date.now() - cfg.lastCheck >= cfg.interval)) {
 
-        log.debug("Check for updates...");
+setInterval(function () {
+    if ((Date.now() - cfg.lastCheck >= (cfg.interval * 1000 * 60 * 60))) {
+
+        log.debug("Check for updates..., last checked:", cfg.lastCheck);
         queue.emit("updater.check");
 
     }

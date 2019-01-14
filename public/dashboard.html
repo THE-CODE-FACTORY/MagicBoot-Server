@@ -8,6 +8,7 @@
   <title>MagicBoot - Dashboard</title>
 
   <!--https://adminlte.io/themes/AdminLTE/pages/forms/general.html-->
+  <!-- https://dc-js.github.io/dc.js/examples/ -->
 
   <!-- CSS -->
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
@@ -32,6 +33,7 @@
   <script src="../assets/js/dashboard.overview.js"></script>
   <script src="../assets/js/dashboard.settings.js"></script>
   <script src="../assets/js/dashboard.updates.js"></script>
+  <script src="../assets/js/dashboard.logfiles.js"></script>
   <script src="../assets/js/dashboard.computer.js"></script>
   <!-- CONTROLLER -->
 
@@ -49,21 +51,39 @@
       <li>
         <a ui-sref="overview"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
       </li>
+
       <li>
-        <a href="javascript:void();" data-toggle="collapse" data-target="#collapseExample"><i class="fas fa-cogs"></i>
+        <a href="javascript:void();" data-toggle="collapse" data-target="#collapseExample2"><i class="fas fa-cogs"></i></i>
           Einstellungen
+        </a>
+        <div class="collapse" id="collapseExample2">
+          <ul class="navigation navigation-sub">
+            <li><a ui-sref="settings/language"><i class="far fa-circle"></i> Sprache</a></li>
+            <li><a ui-sref="settings/network"><i class="far fa-circle"></i> Netzwerk</a></li>
+            <li><a ui-sref="settings/database"><i class="far fa-circle"></i> Datenbank</a></li>
+            <li><a ui-sref="settings/images"><i class="far fa-circle"></i> Images</a></li>
+            <li><a ui-sref="settings/startup"><i class="far fa-circle"></i> App start</a></li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <a href="javascript:void();" data-toggle="collapse" data-target="#collapseExample"><i class="fas fa-wrench"></i></i>
+          Dienste
         </a>
         <div class="collapse" id="collapseExample">
           <ul class="navigation navigation-sub">
-            <li><a ui-sref="settings"><i class="far fa-circle"></i> Allgemein</a></li>
-            <li><a ui-sref="settings/dhcp"><i class="far fa-circle"></i> DHCP</a></li>
-            <li><a ui-sref="settings/tftp"><i class="far fa-circle"></i> TFTP</a></li>
-            <li><a ui-sref="settings/http"><i class="far fa-circle"></i> HTTP</a></li>
+            <li><a ui-sref="service/autodiscover"><i class="far fa-circle"></i> Autodiscover</a></li>
+            <li><a ui-sref="service/dhcp"><i class="far fa-circle"></i> DHCP</a></li>
+            <li><a ui-sref="service/tftp"><i class="far fa-circle"></i> TFTP</a></li>
+            <li><a ui-sref="service/http"><i class="far fa-circle"></i> HTTP</a></li>
           </ul>
         </div>
       </li>
       <li><a ui-sref="updates"><i class="fas fa-download"></i> Updates <span class="badge badge-success float-right">new</span>
-        </a></li>
+        </a>
+      </li>
+      <li><a ui-sref="logfiles"><i class="fas fa-file-alt"></i> Logfiles</a>
+      </li>
       <li><a ui-sref="computer"><i class=" fas fa-laptop"></i> Computer</a></li>
       <li class="header">Dokumentation</li>
       <li><a target="_blank" href="https://github.com/THE-CODE-FACTORY/MagicBoot-Server"><i class="fab fa-github"></i>
