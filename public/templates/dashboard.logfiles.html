@@ -8,14 +8,49 @@
                 <div class="card-header">
                     <h5 class="mb-0">Logfiles</h5>
                 </div>
-                <div class="card-body">
-                    asdf
+                <div class="card-body p-0" style="height: 500px;">
+                    <div class="p-1" style="overflow-y: scroll; height: 100%">
+
+                        {{log[0]}}
+
+                        <div ng-repeat="entry in log track by $index">
+                            [{{entry.name}}][{{entry.hostname}}]
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
 
     </div>
     <!-- SERVICES -->
+
+    <div class="row mt-3">
+        <div class="col-10">
+
+            <button type="button" class="btn btn-outline-secondary">
+                <i class="fas fa-file-download"></i> Sichern
+            </button>
+
+            <button type="button" class="btn btn-outline-danger">
+                <i class="fas fa-trash-alt"></i> Löschen
+            </button>
+
+        </div>
+        <div class="col-2">
+
+            <select class="form-control">
+                <option>Trace</option>
+                <option>Debug</option>
+                <option>Info</option>
+                <option>Warn</option>
+                <option>Error</option>
+                <option>Fatal</option>
+            </select>
+
+        </div>
+    </div>
+
 
 
 </div>

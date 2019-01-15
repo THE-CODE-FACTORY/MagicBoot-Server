@@ -38,6 +38,18 @@
   <script src="../assets/js/admin.plugins.js"></script>
   <!-- CONTROLLER -->
 
+  <!-- CHART.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <!-- CHART.js -->
+
+  <!-- FLAGICON -->
+  <!--<link rel="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" />-->
+  <!-- FLAGICON-->
+
+  <script>
+
+  </script>
+
 </head>
 
 <body ng-app="dashboard">
@@ -83,7 +95,8 @@
       <li><a ui-sref="updates"><i class="fas fa-download"></i> Updates <span class="badge badge-success float-right">new</span>
         </a>
       </li>
-      <li><a ui-sref="logfiles"><i class="fas fa-file-alt"></i> Logfiles</a>
+      <li>
+        <a ui-sref="logfiles"><i class="fas fa-file"></i> Logfiles</a>
       </li>
       <li><a ui-sref="computer"><i class="fas fa-laptop"></i> Computer</a></li>
       <li><a ui-sref="plugins"><i class="fas fa-layer-group"></i> Plugins</a></li>
@@ -107,6 +120,8 @@
     <!-- VIEW -->
 
   </div>
+
+
 
 </body>
 

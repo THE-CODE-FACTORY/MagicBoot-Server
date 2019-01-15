@@ -20,6 +20,7 @@ module.exports = function (log, app) {
   router.use("/settings", require("./api.settings.js")(log, app));
   router.use("/queue", require("./api.queue.js")(log, app));
   router.use("/update", require("./api.update.js")(log, app));
+  router.use("/logfiles", require("./api.logfiles.js")(log, app));
 
 
   // feedback

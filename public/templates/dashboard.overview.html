@@ -5,8 +5,10 @@
 
         <div class="col-md-3">
             <div class="card">
-                <div class="card-body">
-                    ram
+                <div class="card-body p-0">
+
+                    <canvas ng-non-bindable id="usage-ram" style="height: 200px;"></canvas>
+
                 </div>
             </div>
         </div>
@@ -14,7 +16,9 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    cpu
+
+                    <canvas ng-non-bindable id="usage-cpu" style="height: 200px;"></canvas>
+
                 </div>
             </div>
         </div>
@@ -22,7 +26,9 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    net
+
+                    <canvas ng-non-bindable id="usage-net" style="height: 200px;"></canvas>
+
                 </div>
             </div>
         </div>
@@ -30,7 +36,9 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    hdd
+
+                    <canvas ng-non-bindable id="usage-hdd" style="height: 200px;"></canvas>
+
                 </div>
             </div>
         </div>
@@ -43,7 +51,28 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    queue
+
+                    <div class="row">
+                        <div class="col-8">
+
+                            <div class="chart-container" stlye="height: 100px !important">
+                                <canvas ng-non-bindable id="usage-queue"></canvas>
+                            </div>
+
+                        </div>
+                        <div class="col-4">
+
+                            <div><i class="far fa-circle" style="color: rgb(255, 99, 132)"></i> Red</div>
+                            <div><i class="far fa-circle" style="color: rgb(255, 159, 64)"></i> Orange</div>
+                            <div><i class="far fa-circle" style="color: rgb(255, 205, 86)"></i> Yellow</div>
+                            <div><i class="far fa-circle" style="color: rgb(75, 192, 192)"></i> Green</div>
+                            <div><i class="far fa-circle" style="color: rgb(54, 162, 235)"></i> Blue</div>
+                            <div><i class="far fa-circle" style="color: rgb(153, 102, 255)"></i> Purple</div>
+                            <div><i class="far fa-circle" style="color: rgb(201, 203, 207)"></i> Grey</div>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -111,7 +140,7 @@
                                 <td>Proxy</td>
                                 <td><span class="badge badge-danger">Stopped</span></td>
                                 <td>0</td>
-                                <td>0</td>
+                                <td><span id="bartest"></span></td>
                                 <td>
                                     <button type="button" class="btn btn-outline-success btn-sm">Start</button>
                                     <button type="button" class="btn btn-outline-danger btn-sm">Stop</button>
