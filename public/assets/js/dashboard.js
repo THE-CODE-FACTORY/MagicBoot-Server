@@ -37,6 +37,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
       controller: "Computer"
     });
 
+    $stateProvider.state("plugins", {
+      url: "/computer",
+      templateUrl: "../templates/admin.plugins.html",
+      controller: "Plugins"
+    });
+
     $stateProvider.state("updates", {
       url: "/updates",
       templateUrl: "../templates/dashboard.updates.html",

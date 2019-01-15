@@ -70,7 +70,7 @@
                                 </thead>
                                 <tbody>
 
-                                    <tr ng-repeat="group in list | orderBy: desc " ng-init="edit = false; selected = false;">
+                                    <tr ng-repeat="group in list" ng-init="edit = false; selected = false;">
                                         <th scope="row">{{$index + 1}}</th>
                                         <th>
 
@@ -80,7 +80,12 @@
                                         <th>
 
                                             <select class="custom-select" size="8" multiple ng-options="task._id as task.name for task in tasks"
-                                                ng-model="group.tasks" ng-disabled="!edit"></select>
+                                                ng-model="group.tasks" ng-disabled="!edit" style="border-radius: 5px 5px 0 0"></select>
+
+                                            <button ng-click="orderTasks()" class="btn btn-block btn-outline-secondary"
+                                                style="border-radius: 0 0 5px 5px" data-toggle="modal" data-target="#myModal"
+                                                ng-hide="!edit">Reihenfolge
+                                                ändern</button>
 
 
                                         </th>
@@ -114,6 +119,63 @@
             </div>
         </div>
         <!-- TABLE -->
+
+        <!-- MODAL -->
+        <div class="">
+            <div class="modal" tabindex="-1" role="dialog" id="myModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+
+                            <h5 class="modal-title">Task reihenfolge ändern</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                        </div>
+                        <div class="modal-body">
+
+
+                            <div class="d-flex">
+                                <div class="w-100">
+
+                                    <select class="custom-select" size="8" ng-options="task._id as task.name for task in order"
+                                        ng-model="target" style="width:100%;"></select>
+
+                                </div>
+                                <div class="flex-shrink-1">
+
+                                    <!-- BUTTONS -->
+                                    <button type="button" class="btn btn-secondary rounded-0 btn-block" ng-click="moveUp()"
+                                        style="height: 50% !important; margin-top: 0; border-top-right-radius: 3px !important">
+                                        <i class="fas fa-arrow-up"></i>
+                                    </button>
+
+                                    <button type="button" class="btn btn-dark rounded-0 btn-block" ng-click="moveDown()"
+                                        style="height: 50% !important; margin-top: 0; border-bottom-right-radius: 3px !important">
+                                        <i class="fas fa-arrow-down"></i>
+                                    </button>
+                                    <!-- BUTTONS -->
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+
+                            <button class="btn btn-outline-danger" ng-click="abortOrder();" data-toggle="modal"
+                                data-target="#myModal">Abrechen</button>
+
+                            <button class="btn btn-outline-success" ng-click="applyOrder();" data-toggle="modal"
+                                data-target="#myModal">Anwenden</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- MODAL -->
 
     </div>
 </div>

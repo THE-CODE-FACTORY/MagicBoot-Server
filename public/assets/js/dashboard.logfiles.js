@@ -1,4 +1,4 @@
-app.controller('Updates', function ($scope, api) {
+app.controller('Logfiles', function ($scope, api) {
 
 
     api.get("/logfiles", function (err, data) {
