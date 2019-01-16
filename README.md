@@ -28,13 +28,13 @@ NodeJS: https://nodejs.org/, LTS version recomended.
     "autodiscover": {
       "listen": false,
       "interval": 5000,
-      "broadcast": "172.16.0.255",
+      "broadcast": "127.0.0.1",
       "host": "172.16.0.1"
     },
     "updater": {
       "listen": true,
-      "interval": 86400000,
-      "lastCheck": 1547378506068
+      "interval": 4,
+      "lastCheck": 1547575891288
     },
     "proxy": {
       "listen": false
@@ -43,7 +43,15 @@ NodeJS: https://nodejs.org/, LTS version recomended.
       "listen": true,
       "host": "0.0.0.0",
       "port": 80,
-      "cluster": false
+      "cluster": false,
+      "worker": 8,
+      "ssl": {
+        "redirect": false,
+        "enabled": false,
+        "key": "",
+        "cert": "",
+        "port": 443
+      }
     },
     "tftp": {
       "listen": true,
@@ -64,11 +72,7 @@ NodeJS: https://nodejs.org/, LTS version recomended.
         "router": [
           "172.16.0.254"
         ],
-        "dns": [
-          "9.9.9.9",
-          "1.1.1.1",
-          "8.8.8.8"
-        ],
+        "dns": ["9.9.9.9","1.1.1.1","8.8.8.8"],
         "broadcast": "172.16.0.255",
         "server": "172.16.0.1",
         "leaseTime": 86400
@@ -90,8 +94,8 @@ NodeJS: https://nodejs.org/, LTS version recomended.
     "port": 27017,
     "authentication": {
       "enabled": false,
-      "username": "",
-      "password": ""
+      "username": "asdf4f",
+      "password": "34f324fsdfasdf"
     }
   },
   "images": {
@@ -114,6 +118,9 @@ NodeJS: https://nodejs.org/, LTS version recomended.
     "harmony": false,
     "delay": 2000,
     "restart": false
+  },
+  "network": {
+    "interface": "eth0"
   }
 }
 ```
