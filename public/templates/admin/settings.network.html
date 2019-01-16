@@ -1,0 +1,65 @@
+<div class="container-fluid">
+
+    <div class="row hide">
+        <div class=" col-12">
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Information</h5>
+                </div>
+                <div class="card-body">
+                    verison, collections, etc...
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Einstellungen</h5>
+                </div>
+                <div class="card-body">
+
+
+                    <form>
+
+                        <fieldset>
+
+                            <legend class="mb-0">Interface</legend>
+
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <label>Interface</label>
+                                    <select class="form-control" ng-model="settings.network.interface">
+                                        <option value="eth0">eth0</option>
+                                        <option value="eth1">eth1</option>
+                                        <option value="eth1">eth2</option>
+                                        <option value="eth1">eth3</option>
+                                        <option value="bond0">bond0</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+
+
+
+                        <button type="button" ng-click="save();" class="btn btn-primary">Speichern</button>
+
+                    </form>
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

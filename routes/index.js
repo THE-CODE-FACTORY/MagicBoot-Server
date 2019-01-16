@@ -29,8 +29,8 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/dashboard", function (req, res) {
-    res.sendFile("dashboard.html", {
+  app.get("/admin", function (req, res) {
+    res.sendFile("admin.html", {
       root: path.resolve(__dirname, "../public")
     });
   });

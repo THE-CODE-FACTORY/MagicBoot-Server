@@ -1,0 +1,122 @@
+<div class="container-fluid">
+
+
+    <div class="row">
+        <div class="col-12">
+
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <div class="material-switch float-right" style="display: inline-block; margin-right:5px">
+                            <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox" ng-model="settings.services.http.listen" />
+                            <label for="someSwitchOptionSuccess" class="bg-success"></label>
+                        </div>
+                        Einstellungen
+                    </h5>
+                </div>
+                <div class="card-body">
+
+
+                    <form>
+
+                        <fieldset>
+
+                            <legend class="mb-0">Server</legend>
+
+                            <div class="form-group row">
+                                <div class="col-6">
+                                    <label>Host</label>
+                                    <input type="text" ng-model="settings.services.http.host" class="form-control"
+                                        placeholder="0.0.0.0">
+                                </div>
+                                <div class="col-3">
+                                    <label>Port (HTTP)</label>
+                                    <input type="number" ng-model="settings.services.http.port" class="form-control"
+                                        placeholder="80">
+                                </div>
+                                <div class="col-3">
+                                    <label>Port (HTTPS)</label>
+                                    <input type="number" ng-model="settings.services.http.ssl.port" class="form-control"
+                                        placeholder="443">
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+
+                        <fieldset>
+
+                            <legend class="mb-0">
+                                <div class="material-switch" style="display: inline-block; margin-right:5px">
+                                    <input id="someSwitchOptionSuccess4" type="checkbox" ng-model="settings.services.http.cluster" />
+                                    <label for="someSwitchOptionSuccess4" class="bg-success"></label>
+                                </div>
+                                Lastverteilung
+                            </legend>
+
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <label>Worker</label>
+                                    <input type="number" ng-model="settings.services.http.worker" class="form-control"
+                                        placeholder="8">
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+
+                        <fieldset class="hides">
+
+                            <legend class="mb-0">
+                                <div class="material-switch" style="display: inline-block; margin-right:5px">
+                                    <input id="someSwitchOptionSuccess2" name="someSwitchOption001" type="checkbox"
+                                        ng-model="settings.services.http.ssl.enabled" />
+                                    <label for="someSwitchOptionSuccess2" class="bg-success"></label>
+                                </div>
+                                Verschlüsselung
+                            </legend>
+
+                            <div class="form-group row">
+                                <div class="col-6">
+                                    <label>Privater Schlüssel</label>
+                                    <input type="text" ng-model="settings.services.http.ssl.key" class="form-control"
+                                        placeholder="/var/etc/ssl/example.com-key.pem">
+                                </div>
+                                <div class="col-6">
+                                    <label>Zertifikat</label>
+                                    <input type="text" ng-model="settings.services.http.ssl.cert" class="form-control"
+                                        placeholder="/var/etc/ssl/example.com-cert.pem">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <div class="material-switch" style="display: inline-block; margin-right:5px">
+                                        <input id="someSwitchOptionSuccess3" name="someSwitchOption001" type="checkbox"
+                                            ng-model="settings.services.http.ssl.redirect" />
+                                        <label for="someSwitchOptionSuccess3" class="bg-success"></label>
+                                    </div>
+                                    Weiterleitung von <code>http</code> zu <code>https</code>
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+
+
+
+
+                        <button type="button" ng-click="save();" class="btn btn-primary">Speichern</button>
+
+                    </form>
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

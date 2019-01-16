@@ -1,0 +1,175 @@
+<div class="container-fluid">
+
+    <!-- CHARTS -->
+    <div class="row">
+
+        <!-- RAM -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body" style="padding: 0px;">
+
+                    <div class="chart-container"></div>
+                    <canvas ng-non-bindable id="usage-ram"></canvas>
+                </div>
+
+            </div>
+        </div>
+        <!-- RAM -->
+
+        <!-- CPU -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body p-0">
+
+                    <div class="chart-container">
+                        <canvas ng-non-bindable id="usage-cpu"></canvas>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- CPU -->
+
+        <!-- NET -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body p-0">
+
+                    <div class="chart-container">
+                        <canvas ng-non-bindable id="usage-net"></canvas>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- NET -->
+
+        <!-- HDD -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body p-0">
+
+                    <div class="chart-container">
+                        <canvas ng-non-bindable id="usage-hdd"></canvas>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- HDD -->
+
+    </div>
+    <!-- CHARTS -->
+
+    <!-- QUEUE OVERVIEW -->
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-8">
+
+                            <div class="chart-container">
+                                <canvas ng-non-bindable id="usage-queue"></canvas>
+                            </div>
+
+                        </div>
+                        <div class="col-4">
+
+                            <div><i class="far fa-circle" style="color: rgb(255, 99, 132)"></i> Red</div>
+                            <div><i class="far fa-circle" style="color: rgb(255, 159, 64)"></i> Orange</div>
+                            <div><i class="far fa-circle" style="color: rgb(255, 205, 86)"></i> Yellow</div>
+                            <div><i class="far fa-circle" style="color: rgb(75, 192, 192)"></i> Green</div>
+                            <div><i class="far fa-circle" style="color: rgb(54, 162, 235)"></i> Blue</div>
+                            <div><i class="far fa-circle" style="color: rgb(153, 102, 255)"></i> Purple</div>
+                            <div><i class="far fa-circle" style="color: rgb(201, 203, 207)"></i> Grey</div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    ?!
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- QUEUE OVERVIEW -->
+
+    <!-- SERVICES -->
+    <div class="row mt-3">
+        <div class="col-12">
+
+            <div class="card">
+                <div class="card-body p-0">
+                    <table class="table bt-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Dienst</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">CPU</th>
+                                <th scope="col">RAM</th>
+                                <th scope="col">Start/Stop</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>DHCP</td>
+                                <td><span class="badge badge-success">Runnig</span></td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-success btn-sm">Start</button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm">Stop</button>
+                                    <button type="button" class="btn btn-outline-info btn-sm">Restart</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>HTTP</td>
+                                <td><span class="badge badge-success">Runnig</span></td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-success btn-sm">Start</button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm">Stop</button>
+                                    <button type="button" class="btn btn-outline-info btn-sm">Restart</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>TFTP</td>
+                                <td><span class="badge badge-warning">Degenerate</span></td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-success btn-sm">Start</button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm">Stop</button>
+                                    <button type="button" class="btn btn-outline-info btn-sm">Restart</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Proxy</td>
+                                <td><span class="badge badge-danger">Stopped</span></td>
+                                <td>0</td>
+                                <td><span id="bartest"></span></td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-success btn-sm">Start</button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm">Stop</button>
+                                    <button type="button" class="btn btn-outline-info btn-sm">Restart</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- SERVICES -->
+
+
+</div>

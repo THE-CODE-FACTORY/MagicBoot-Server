@@ -1,0 +1,66 @@
+<div class="container-fluid">
+
+
+    <div class="row">
+        <div class="col-12">
+
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">
+                        <div class="material-switch float-right" style="display: inline-block; margin-right:5px">
+                            <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox" ng-model="settings.services.tftp.listen" />
+                            <label for="someSwitchOptionSuccess" class="bg-success"></label>
+                        </div>
+                        Einstellungen
+                    </h5>
+                </div>
+                <div class="card-body">
+
+
+                    <form>
+
+                        <fieldset>
+
+                            <legend class="mb-0">Server</legend>
+
+                            <div class="form-group row">
+                                <div class="col-6">
+                                    <label>Server</label>
+                                    <input type="text" class="form-control" ng-model="settings.services.tftp.host">
+                                </div>
+                                <div class="col-6">
+                                    <label>Port</label>
+                                    <input type="number" class="form-control" ng-model="settings.services.tftp.port">
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+                        <fieldset>
+
+                            <legend class="mb-0">Optionen</legend>
+
+
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <label>TFTP Root</label>
+                                    <input type="text" class="form-control" ng-model="settings.services.tftp.root">
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+                        <button type="button" ng-click="save();" class="btn btn-primary">Speichern</button>
+
+                    </form>
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

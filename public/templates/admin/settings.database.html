@@ -1,0 +1,89 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Information</h5>
+                </div>
+                <div class="card-body">
+                    verison, collections, etc...
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-12">
+
+
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Einstellungen</h5>
+                </div>
+                <div class="card-body">
+
+
+                    <form>
+
+                        <fieldset>
+
+                            <legend class="mb-0">
+                                Server
+                            </legend>
+
+                            <div class="form-group row">
+                                <div class="col-6">
+                                    <label>Host</label>
+                                    <input type="text" class="form-control" ng-model="settings.database.host">
+                                </div>
+                                <div class="col-6">
+                                    <label>Port</label>
+                                    <input type="number" class="form-control" ng-model="settings.database.port">
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+                        <fieldset>
+
+                            <legend class="mb-0">
+                                <div class="material-switch" style="display: inline-block; margin-right:5px">
+                                    <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox"
+                                        ng-model="settings.database.authentication.enabled" />
+                                    <label for="someSwitchOptionSuccess" class="bg-success"></label>
+                                </div>
+                                Authentication
+                            </legend>
+
+
+                            <div class="form-group row">
+                                <div class="col-6">
+                                    <label>Benutzername</label>
+                                    <input type="text" class="form-control" ng-model="settings.database.authentication.username">
+                                </div>
+                                <div class="col-6">
+                                    <label>Passwort</label>
+                                    <input type="password" class="form-control" ng-model="settings.database.authentication.password">
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+
+
+                        <button type="button" ng-click="save();" class="btn btn-primary">Speichern</button>
+
+                    </form>
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
