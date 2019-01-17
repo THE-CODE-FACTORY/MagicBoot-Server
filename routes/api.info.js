@@ -1,5 +1,6 @@
 const express = require("express");
 const merge = require("merge-anything");
+const si = require("systeminformation");
 
 module.exports = function (log, app) {
 
@@ -7,6 +8,7 @@ module.exports = function (log, app) {
     // shortcut to model & router
     const router = express.Router();
 
+    /*
     app.db.connection.on("open", function () {
 
         var admin = new app.db.mongo.Admin(app.db.connection.db);
@@ -19,12 +21,22 @@ module.exports = function (log, app) {
             console.log(info);
         });
     });
-
+*/
 
 
     router.get("/", function (req, res) {
 
-        //console.log(mongo.hostInfo());
+        var data = {};
+
+        si.networkInterfaces(list => {
+
+            data.network = {
+                interfaces: list
+            }
+
+            res.json(data)
+
+        });
 
 
     });

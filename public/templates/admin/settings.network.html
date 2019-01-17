@@ -36,11 +36,10 @@
                                 <div class="col-12">
                                     <label>Interface</label>
                                     <select class="form-control" ng-model="settings.network.interface">
-                                        <option value="eth0">eth0</option>
-                                        <option value="eth1">eth1</option>
-                                        <option value="eth1">eth2</option>
-                                        <option value="eth1">eth3</option>
-                                        <option value="bond0">bond0</option>
+                                        <option value="{{iface.iface}}" ng-repeat="iface in info.network.interfaces">
+                                            {{iface.iface}}
+                                            {{iface.mac ? '(' + iface.mac + ')' : ""}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>

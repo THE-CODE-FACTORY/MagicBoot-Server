@@ -1,5 +1,11 @@
 app.controller('Settings', function ($scope, api) {
 
+    api.get("/info", function (err, data) {
+
+        console.log(data);
+        $scope.info = data;
+
+    })
 
     api.get("/settings", function (err, data) {
 
@@ -11,7 +17,14 @@ app.controller('Settings', function ($scope, api) {
 
 
     $scope.save = function () {
-        api.post("/settings", $scope.settings, function (err, result) {
+
+
+        var settings = $scope.settings;
+
+        settings.services.dhcp.options.dns = $scope.settings.services.dhcp.options.dns.split(",");
+
+
+        api.post("/settings", settings, function (err, result) {
 
             console.log(err, result)
 

@@ -1,4 +1,7 @@
-var app = angular.module('dashboard', ["ui.router"]);
+const socket = io.connect("/admin");
+
+
+const app = angular.module('dashboard', ["ui.router"]);
 
 
 app.factory('$xhrFactory', function () {
@@ -136,85 +139,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 });
 
 
-app.factory("api", function ($http) {
-  return {
-
-    get: function (url, cb) {
-
-      $http({
-        method: 'GET',
-        url: "/api" + url
-      }).then(function successCallback(response) {
-
-        console.log(response)
-        cb(null, response.data);
-
-      }, function errorCallback(response) {
-
-        cb(response.data.error);
-        console.log("ERROR", response);
-
-      });
-
-    },
-
-    put: function (url, data, cb) {
-
-      $http({
-        method: 'PUT',
-        url: "/api" + url,
-        data: data
-      }).then(function successCallback(response) {
-        cb(null, response.data);
-      }, function errorCallback(response) {
-
-        cb(response.data.error);
-        console.log("ERROR", response);
-
-      });
-
-    },
-
-    post: function (url, data, cb) {
-
-      $http({
-        method: 'POST',
-        url: "/api" + url,
-        data: data
-      }).then(function successCallback(response) {
-
-        cb(null, response.data);
-
-      }, function errorCallback(response) {
-
-        cb(response.data.error);
-        console.log("ERROR", response);
-
-      });
-
-    },
-
-    delete: function (url, cb) {
-
-      $http({
-        method: 'DELETE',
-        url: "/api" + url
-      }).then(function successCallback(response) {
-        cb(null, response.data);
-      }, function errorCallback(response) {
-
-        cb(response.data.error);
-        console.log("ERROR", response);
-
-      });
-
-    }
-
-  }
-});
-
-
-/*
 app.factory('socket', function ($rootScope) {
   return {
     on: function (eventName, callback) {
@@ -315,6 +239,8 @@ app.factory("api", function ($http) {
   }
 });
 
+
+/*
 
 function notification(message, type = "info", timeout = 15000) {
 

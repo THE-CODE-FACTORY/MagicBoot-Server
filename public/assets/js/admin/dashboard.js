@@ -1,4 +1,14 @@
-app.controller('Dashboard', function ($scope) {
+app.controller('Dashboard', function ($scope, socket) {
+
+
+    function updateChart(data) {
+        console.log("Chart", data);
+    }
+
+
+    socket.emit("queue", null, updateChart);
+    socket.on("queue", updateChart)
+
 
     const chartColors = {
         red: 'rgb(255, 99, 132)',
@@ -78,7 +88,7 @@ app.controller('Dashboard', function ($scope) {
                 datasets: [{
                     //label: "My First dataset",
                     backgroundColor: chartColors.green,
-                    data: [10, 80, 30, 40, 50, 60, 70, 80, 90, 100],
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 }]
             },
 
@@ -98,7 +108,7 @@ app.controller('Dashboard', function ($scope) {
                 datasets: [{
                     //label: "My First dataset",
                     backgroundColor: chartColors.blue,
-                    data: [10, 80, 30, 40, 50, 60, 70, 80, 90, 100],
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 }]
             },
 
@@ -116,7 +126,7 @@ app.controller('Dashboard', function ($scope) {
                 datasets: [{
                     //label: "My First dataset",
                     backgroundColor: chartColors.purple,
-                    data: [10, 80, 30, 40, 50, 60, 70, 80, 90, 100],
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 }/*, {
                     //label: "My First dataset",
                     backgroundColor: 'rgb(200, 0, 0)',
@@ -132,38 +142,41 @@ app.controller('Dashboard', function ($scope) {
 
 
 
-
-        setInterval(function () {
-
-            console.log(Date.now())
-
-            chart1.data.datasets.forEach((dataset) => {
-                dataset.data.shift();
-                dataset.data.push(Math.floor((Math.random() * 100) + 1));
-            });
-
-            chart2.data.datasets.forEach((dataset) => {
-                dataset.data.shift();
-                dataset.data.push(Math.floor((Math.random() * 100) + 1));
-            });
-
-            chart3.data.datasets.forEach((dataset) => {
-                dataset.data.shift();
-                dataset.data.push(Math.floor((Math.random() * 20) + 1));
-            });
-
-            chart4.data.datasets.forEach((dataset) => {
-                dataset.data.shift();
-                dataset.data.push(Math.floor((Math.random() * 100) + 1));
-            });
-
-            chart1.update();
-            chart2.update();
-            chart3.update();
-            chart4.update();
-
-        }, 3000);
-
+        /*
+                socket.on("resources", function (data) {
+        
+                    console.log("resources", data);
+        
+        
+                    console.log(Date.now())
+        
+                    chart1.data.datasets.forEach((dataset) => {
+                        dataset.data.shift();
+                        dataset.data.push(data.cpu);
+                    });
+        
+                    chart2.data.datasets.forEach((dataset) => {
+                        dataset.data.shift();
+                        dataset.data.push(data.mem);
+                    });
+        
+                    chart3.data.datasets.forEach((dataset) => {
+                        dataset.data.shift();
+                        dataset.data.push(data.hdd);
+                    });
+        
+                    chart4.data.datasets.forEach((dataset) => {
+                        dataset.data.shift();
+                        dataset.data.push(data.net);
+                    });
+        
+                    chart1.update();
+                    chart2.update();
+                    chart3.update();
+                    chart4.update();
+        
+                });
+        */
 
 
         // For a pie chart

@@ -44,6 +44,7 @@ const startup = function startup(name) {
 
 	// feedback
 	log.info("Spawned service '%s', PID: %d", name, service.pid);
+	queue.emit("service.started", name);
 
 	/*
 	 service.on("error", function (err) {
@@ -73,6 +74,9 @@ const startup = function startup(name) {
 			// possible during a restart 
 			log.info("Service '%s' exited with code: 0", name);
 			delete services[name];
+
+			// service stopped
+			queue.emit("service.stopped", name);
 
 		} else {
 
@@ -112,7 +116,8 @@ const shutdown = function shutdown(name) {
 
 		// tell the clients to shut the fuck up
 		if (services[name].connected && services[name].channel) {
-			services[name].send("shutdown");
+			services[name].kill("SIGINT");
+			//services[name].send("shutdown");
 		}
 
 	} else {
@@ -215,6 +220,34 @@ fs.stat("./config.json", function (err, stats) {
 		// start ipc server
 		// allow communication between processes
 		queue.server();
+
+
+
+
+
+		queue.on("service.start", function (name) {
+
+			if (services[name]) {
+				return log.trace("Could not start service '%s', allready started", name);
+			}
+
+			startup(name);
+
+		});
+
+		queue.on("service.stop", function (name) {
+
+			if (!services[name]) {
+				return log.trace("Could not stop service '%s', not started", name);
+			}
+
+			shutdown(name);
+
+		});
+
+
+
+
 
 
 		// test mongodb connection

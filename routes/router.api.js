@@ -21,6 +21,7 @@ module.exports = function (log, app) {
   router.use("/queue", require("./api.queue.js")(log, app));
   router.use("/update", require("./api.update.js")(log, app));
   router.use("/logfiles", require("./api.logfiles.js")(log, app));
+  //router.use("/services", require("./api.services.js")(log, app));
   router.use("/info", require("./api.info.js")(log, app));
 
 
