@@ -1,8 +1,44 @@
 const path = require("path");
 const express = require("express");
 const log = require("../lib/lib.logger.js")("WEB");
+const si = require("systeminformation");
 
 module.exports = function (app) {
+
+  const ns = app.io.of("/admin");
+
+  ns.on("connection", function () {
+
+    log.debug("Admin connected");
+
+  });
+
+
+  (function () {
+
+    var stats = {};
+
+    setInterval(function () {
+
+      si.mem(data => {
+        stats["mem"] = (data.total / data.free * 100);
+      });
+
+      si.fsStats(data => {
+        // / si.disksIO
+        //stats["hdd"] = data;
+      });
+
+      si.networkStats(data => {
+        //stats["net"] = data;
+      });
+
+      ns.emit("resources", stats);
+
+    }, 1500);
+
+  })();
+
 
 
   //require("./router.files.js")(log.create("FILES"), app);
