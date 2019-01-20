@@ -190,11 +190,11 @@ https://github.com/THE-CODE-FACTORY/MagicBoot-Server/wiki/Screenshots
     - ~~tftp~~
     - ~~http~~
   - updates
-  - logfiels
+  - logfile
   - ~~computer~~
 - http cluster (multi core use)
 - plugin system (VNC)
-- updater (auto updater)
+- updater (auto update)
 
 
 #### Note
