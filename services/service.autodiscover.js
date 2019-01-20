@@ -5,8 +5,8 @@ const log = require("../lib/lib.logger.js")("AUTODISCOVER");
 // shortuct to services
 const auto = services.autodiscover;
 const http = services.http;
-//const tftp = services.tftp;
-//const dhcp = services.http;
+const tftp = services.tftp;
+const dhcp = services.http;
 
 
 const PORT = 6024;
@@ -16,8 +16,19 @@ const server = dgram.createSocket("udp4");
 // create message
 const message = JSON.stringify({
     "http": {
+        "protocol": "http",
         "host": auto.host,
         "port": http.port
+    },
+    "tftp": {
+        "protocol": "tftp",
+        "host": auto.host,
+        "port": tftp.port
+    },
+    "dhcp": {
+        "protocol": "dhcp",
+        "host": auto.host,
+        "port": dhcp.port
     }
 });
 

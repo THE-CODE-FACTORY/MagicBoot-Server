@@ -21,7 +21,7 @@ app.controller('Settings', function ($scope, api) {
 
         var settings = $scope.settings;
 
-        settings.services.dhcp.options.dns = $scope.settings.services.dhcp.options.dns.split(",");
+        //settings.services.dhcp.options.dns = $scope.settings.services.dhcp.options.dns.split(",");
 
 
         api.post("/settings", settings, function (err, result) {

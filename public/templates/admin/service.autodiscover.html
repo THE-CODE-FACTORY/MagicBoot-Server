@@ -9,36 +9,78 @@
                 <div class="card-header">
                     <h5 class="mb-0">
                         <div class="material-switch float-right" style="display: inline-block; margin-right:5px">
-                            <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox" ng-model="settings.services.autodiscover.listen" />
-                            <label for="someSwitchOptionSuccess" class="bg-success"></label>
+                            <input id="someSwitchOptionSuccessasdf" type="checkbox" ng-model="settings.services.autodiscover.listen" />
+                            <label for="someSwitchOptionSuccessasdf" class="bg-success"></label>
                         </div>
                         Einstellungen
                     </h5>
                 </div>
                 <div class="card-body">
 
+                    <div class="row">
+                        <div class="col-6">
 
-                    <form>
+                            <form>
 
-                        <fieldset>
+                                <fieldset>
 
-                            <legend class="mb-0">Server</legend>
+                                    <legend class="mb-0">Server</legend>
 
-                            <div class="form-group row">
-                                <div class="col-3">
-                                    <label>Host</label>
-                                    <input type="text" ng-model="settings.services.autodiscover.host" class="form-control"
-                                        placeholder="172.16.0.1">
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <label>Host</label>
+                                            <input type="text" ng-model="settings.services.autodiscover.host" class="form-control"
+                                                placeholder="172.16.0.1">
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+
+                                <button type="button" ng-click="save();" class="btn btn-primary">Speichern</button>
+
+                            </form>
+
+
+                        </div>
+                        <div class="col-6 hide">
+
+                            <fieldset>
+
+                                <legend class="mb-0">Veröffentlichte Dienste</legend>
+
+                                {{settings.services.autodiscover.services}}
+
+                                <div class="mb-1">
+                                    <div class="material-switch" style="display: inline-block; margin-right:5px">
+                                        <input id="broadcast-http" type="checkbox" ng-model="settings.services.autodiscover.services[0]"
+                                            value="http" />
+                                        <label for="broadcast-http" class="bg-info"></label>
+                                    </div>
+                                    HTTP
                                 </div>
-                            </div>
 
-                        </fieldset>
+                                <div class="mb-1">
+                                    <div class="material-switch" style="display: inline-block; margin-right:5px">
+                                        <input id="broadcast-tftp" type="checkbox" ng-model="settings.services.autodiscover.services[1]"
+                                            value="tftp" />
+                                        <label for="broadcast-tftp" class="bg-info"></label>
+                                    </div>
+                                    TFTP
+                                </div>
 
+                                <div class="mb-1">
+                                    <div class="material-switch" style="display: inline-block; margin-right:5px">
+                                        <input id="broadcast-dhcp" type="checkbox" ng-model="settings.services.autodiscover.services[2]"
+                                            value="dhcp" />
+                                        <label for="broadcast-dhcp" class="bg-info"></label>
+                                    </div>
+                                    DHCP
+                                </div>
 
+                            </fieldset>
 
-                        <button type="button" ng-click="save();" class="btn btn-primary">Speichern</button>
-
-                    </form>
+                        </div>
+                    </div>
 
 
                 </div>

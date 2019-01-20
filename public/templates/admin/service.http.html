@@ -78,15 +78,20 @@
                             </legend>
 
                             <div class="form-group row">
-                                <div class="col-6">
+                                <div class="col-4">
                                     <label>Privater Schlüssel</label>
                                     <input type="text" ng-model="settings.services.http.ssl.key" class="form-control"
                                         placeholder="/var/etc/ssl/example.com-key.pem">
                                 </div>
-                                <div class="col-6">
+                                <div class="col-4">
                                     <label>Zertifikat</label>
                                     <input type="text" ng-model="settings.services.http.ssl.cert" class="form-control"
                                         placeholder="/var/etc/ssl/example.com-cert.pem">
+                                </div>
+                                <div class="col-4">
+                                    <label>Zertifizierungsstelle</label>
+                                    <input type="text" ng-model="settings.services.http.ssl.ca" class="form-control"
+                                        placeholder="/var/etc/ssl/example.com-ca.pem">
                                 </div>
                             </div>
 
