@@ -34,6 +34,22 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <label>Broadcast</label>
+                                            <input type="text" ng-model="settings.services.autodiscover.broadcast"
+                                                class="form-control" placeholder="172.16.0.1">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <label>Interval</label>
+                                            <input type="number" ng-model="settings.services.autodiscover.interval"
+                                                class="form-control" placeholder="5">
+                                        </div>
+                                    </div>
+
                                 </fieldset>
 
                                 <button type="button" ng-click="save();" class="btn btn-primary">Speichern</button>
@@ -42,18 +58,15 @@
 
 
                         </div>
-                        <div class="col-6 hide">
+                        <div class="col-6">
 
                             <fieldset>
 
                                 <legend class="mb-0">Veröffentlichte Dienste</legend>
 
-                                {{settings.services.autodiscover.services}}
-
-                                <div class="mb-1">
+                                <div class="mb-1 mt-2">
                                     <div class="material-switch" style="display: inline-block; margin-right:5px">
-                                        <input id="broadcast-http" type="checkbox" ng-model="settings.services.autodiscover.services[0]"
-                                            value="http" />
+                                        <input id="broadcast-http" type="checkbox" ng-model="settings.services.autodiscover.services.http" />
                                         <label for="broadcast-http" class="bg-info"></label>
                                     </div>
                                     HTTP
@@ -61,8 +74,7 @@
 
                                 <div class="mb-1">
                                     <div class="material-switch" style="display: inline-block; margin-right:5px">
-                                        <input id="broadcast-tftp" type="checkbox" ng-model="settings.services.autodiscover.services[1]"
-                                            value="tftp" />
+                                        <input id="broadcast-tftp" type="checkbox" ng-model="settings.services.autodiscover.services.tftp" />
                                         <label for="broadcast-tftp" class="bg-info"></label>
                                     </div>
                                     TFTP
@@ -70,8 +82,7 @@
 
                                 <div class="mb-1">
                                     <div class="material-switch" style="display: inline-block; margin-right:5px">
-                                        <input id="broadcast-dhcp" type="checkbox" ng-model="settings.services.autodiscover.services[2]"
-                                            value="dhcp" />
+                                        <input id="broadcast-dhcp" type="checkbox" ng-model="settings.services.autodiscover.services.dhcp" />
                                         <label for="broadcast-dhcp" class="bg-info"></label>
                                     </div>
                                     DHCP

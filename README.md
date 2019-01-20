@@ -23,18 +23,22 @@ NodeJS: https://nodejs.org/, LTS version recomended.
 ### Configuration
 ```json
 {
-  "interface": "eth0",
   "services": {
     "autodiscover": {
-      "listen": false,
+      "listen": true,
       "interval": 5000,
       "broadcast": "127.0.0.1",
-      "host": "172.16.0.1"
+      "host": "172.16.0.1",
+      "services": {
+        "http": true,
+        "tftp": true,
+        "dhcp": false
+      }
     },
     "updater": {
       "listen": true,
       "interval": 4,
-      "lastCheck": 1547575891288
+      "lastCheck": 1547997931549
     },
     "proxy": {
       "listen": false
@@ -72,7 +76,11 @@ NodeJS: https://nodejs.org/, LTS version recomended.
         "router": [
           "172.16.0.254"
         ],
-        "dns": ["9.9.9.9","1.1.1.1","8.8.8.8"],
+        "dns": [
+          "9.9.9.9",
+          "1.1.1.1",
+          "8.8.8.8"
+        ],
         "broadcast": "172.16.0.255",
         "server": "172.16.0.1",
         "leaseTime": 86400
@@ -94,8 +102,8 @@ NodeJS: https://nodejs.org/, LTS version recomended.
     "port": 27017,
     "authentication": {
       "enabled": false,
-      "username": "asdf4f",
-      "password": "34f324fsdfasdf"
+      "username": "",
+      "password": ""
     }
   },
   "images": {
@@ -120,7 +128,7 @@ NodeJS: https://nodejs.org/, LTS version recomended.
     "restart": false
   },
   "network": {
-    "interface": "eth0"
+    "interface": "enp4s0"
   }
 }
 ```
@@ -146,6 +154,9 @@ Don't forget to add your credentials in the `config.json`
 
 ### Webinterface
 
+###### Screenshots
+https://github.com/THE-CODE-FACTORY/MagicBoot-Server/wiki/Screenshots
+
 ###### Session (Computer in queue)
 ![Session](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/session.png "Session")
 ![Session](https://raw.githubusercontent.com/the-code-factory/magicboot-server/master/public/assets/img/session-1.png "Session")
@@ -167,11 +178,23 @@ Don't forget to add your credentials in the `config.json`
 #### Todo's
 - languages pack
 - code optimization
-- dashboard
+- admin interface
+  - dashboard
+  - --settings--
+    - --network--
+    - --database--
+    - --images--
+  - --services--
+    - --autodiscover--
+    - --dhcp--
+    - --tftp--
+    - --http--
+  - updates
+  - logfiels
+  - --computer--
 - http cluster (multi core use)
 - plugin system (VNC)
-- auto updater 
-- ~~autodiscover (zero conf for client)~~
+- updater
 
 
 #### Note
