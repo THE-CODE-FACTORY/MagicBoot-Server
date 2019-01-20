@@ -180,21 +180,21 @@ https://github.com/THE-CODE-FACTORY/MagicBoot-Server/wiki/Screenshots
 - code optimization
 - admin interface
   - dashboard
-  - --settings--
-    - --network--
-    - --database--
-    - --images--
-  - --services--
-    - --autodiscover--
-    - --dhcp--
-    - --tftp--
-    - --http--
+  - ~~settings~~
+    - ~~network~~
+    - ~~database~~
+    - ~~images~~
+  - ~~services~~
+    - ~~autodiscover~~
+    - ~~dhcp~~
+    - ~~tftp~~
+    - ~~http~~
   - updates
   - logfiels
-  - --computer--
+  - ~~computer~~
 - http cluster (multi core use)
 - plugin system (VNC)
-- updater
+- updater (auto updater)
 
 
 #### Note
