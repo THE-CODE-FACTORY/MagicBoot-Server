@@ -193,8 +193,17 @@ https://github.com/THE-CODE-FACTORY/MagicBoot-Server/wiki/Screenshots
   - logfile
   - ~~computer~~
 - http cluster (multi core use)
-- plugin system (VNC)
+- plugin system (VNC, RDP)
 - updater (auto update)
+- web based installer
+- service wrapper (run on OS startup)
+  - Windows
+  - Linux
+- User management (low priority)
+  - Register
+  - Rights
+  - Tokens
+  - API Authentication
 
 
 #### Note
