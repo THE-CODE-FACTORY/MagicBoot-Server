@@ -193,7 +193,7 @@ https://github.com/THE-CODE-FACTORY/MagicBoot-Server/wiki/Screenshots
 <<<<<<< HEAD
   - ~~logfiels~~
 =======
-  - logfile
+  - ~~logfile~~
 >>>>>>> 9cae72acf9e4927a6c5fed82047102158026bb6d
   - ~~computer~~
 - http cluster (multi core use)
