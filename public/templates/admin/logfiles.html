@@ -9,12 +9,44 @@
                     <h5 class="mb-0">Logfiles</h5>
                 </div>
                 <div class="card-body p-0" style="height: 500px;">
-                    <div class="p-1" style="overflow-y: scroll; height: 100%">
-
-                        {{log[0]}}
+                    <div class="p-1" style="overflow-y: scroll; height: 100%; font-family: Arial;">
 
                         <div ng-repeat="entry in log track by $index">
-                            [{{entry.name}}][{{entry.hostname}}]
+
+                            [<span ng-class="{
+                                'text-info': entry.level == '10', 
+                                'text-secondary': entry.level == '20',
+                                'text-primary': entry.level == '30',
+                                'text-warning': entry.level == '40',
+                                'text-danger': entry.level == '50',
+                                'text-danger': entry.level == '60',
+                            }">
+                                {{entry.time | date:'yyyy.mm.dd - HH:MM:ss'}}
+                            </span>]
+
+                            [<span ng-class="{
+                                'text-info': entry.level == '10', 
+                                'text-secondary': entry.level == '20',
+                                'text-primary': entry.level == '30',
+                                'text-warning': entry.level == '40',
+                                'text-danger': entry.level == '50',
+                                'text-danger': entry.level == '60',
+                            }">
+                                {{entry.name}}
+                            </span>]
+
+
+                            [<span ng-switch="entry.level">
+                                <span ng-switch-when="10" class="text-info">TRACE</span>
+                                <span ng-switch-when="20" class="text-secondary">DEBUG</span>
+                                <span ng-switch-when="30" class="text-primary">INFO</span>
+                                <span ng-switch-when="40" class="text-warning">WARN</span>
+                                <span ng-switch-when="50" class="text-danger">ERROR</span>
+                                <span ng-switch-when="60" class="text-danger">FATAL</span>
+                            </span>]
+
+                            {{entry.msg}}
+
                         </div>
 
                     </div>
@@ -28,24 +60,24 @@
     <div class="row mt-3">
         <div class="col-10">
 
-            <button type="button" class="btn btn-outline-secondary">
+            <a href="/api/logfiles/save" class="btn btn-outline-secondary">
                 <i class="fas fa-file-download"></i> Sichern
-            </button>
+            </a>
 
-            <button type="button" class="btn btn-outline-danger">
+            <button type="button" class="btn btn-outline-danger" ng-click="clear()">
                 <i class="fas fa-trash-alt"></i> Löschen
             </button>
 
         </div>
         <div class="col-2">
 
-            <select class="form-control">
-                <option>Trace</option>
-                <option>Debug</option>
-                <option>Info</option>
-                <option>Warn</option>
-                <option>Error</option>
-                <option>Fatal</option>
+            <select class="form-control" ng-change="setLevel()" ng-model="level">
+                <option value="trace">Trace</option>
+                <option value="debug">Debug</option>
+                <option value="info">Info</option>
+                <option value="warn">Warn</option>
+                <option value="error">Error</option>
+                <option value="fatal">Fatal</option>
             </select>
 
         </div>

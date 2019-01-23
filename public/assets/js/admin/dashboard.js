@@ -1,15 +1,6 @@
 app.controller('Dashboard', function ($scope, socket) {
 
 
-    function updateChart(data) {
-        console.log("Chart", data);
-    }
-
-
-    socket.emit("queue", null, updateChart);
-    socket.on("queue", updateChart)
-
-
     const chartColors = {
         red: 'rgb(255, 99, 132)',
         orange: 'rgb(255, 159, 64)',
@@ -49,6 +40,65 @@ app.controller('Dashboard', function ($scope, socket) {
 
 
     };
+
+
+
+
+    // For a pie chart
+    var myPieChart = new Chart(document.getElementById('usage-queue').getContext('2d'), {
+        type: 'pie',
+        data: {
+
+            datasets: [{
+                data: [/*
+                    Math.round(Math.random() * 100),
+                    Math.round(Math.random() * 100),
+                    Math.round(Math.random() * 100),
+                    Math.round(Math.random() * 100),
+                    Math.round(Math.random() * 100),*/
+                ],
+                backgroundColor: [
+                    chartColors.red,/*
+                    chartColors.orange,
+                    chartColors.yellow,
+                    chartColors.green,
+                    chartColors.blue,*/
+                ],
+                label: 'Dataset 1'
+            }]
+        },
+        options: Object.assign({}, options, {
+            scales: {}
+        })
+    });
+
+
+    function updateChart(data) {
+
+        console.log(data)
+
+        var types = {};
+
+        data.forEach(pc => {
+
+            if (!types[pc.state]) {
+                types[pc.state]++;
+            }
+
+            types[pc.state] = 1;
+
+        });
+
+        console.log(types);
+
+        myPieChart.data.datasets.data = types;
+
+    }
+
+
+    socket.emit("queue", null, updateChart);
+    socket.on("queue", updateChart)
+
 
 
 
@@ -177,43 +227,6 @@ app.controller('Dashboard', function ($scope, socket) {
         
                 });
         */
-
-
-        // For a pie chart
-        var myPieChart = new Chart(document.getElementById('usage-queue').getContext('2d'), {
-            type: 'pie',
-            data: {
-
-                datasets: [{
-                    data: [
-                        Math.round(Math.random() * 100),
-                        Math.round(Math.random() * 100),
-                        Math.round(Math.random() * 100),
-                        Math.round(Math.random() * 100),
-                        Math.round(Math.random() * 100),
-                    ],
-                    backgroundColor: [
-                        chartColors.red,
-                        chartColors.orange,
-                        chartColors.yellow,
-                        chartColors.green,
-                        chartColors.blue,
-                    ],
-                    label: 'Dataset 1'
-                }],
-                labels: [
-                    'Red',
-                    'Orange',
-                    'Yellow',
-                    'Green',
-                    'Blue'
-                ]
-
-            },
-            options: Object.assign({}, options, {
-                scales: {}
-            })
-        });
 
     }, 100);
 

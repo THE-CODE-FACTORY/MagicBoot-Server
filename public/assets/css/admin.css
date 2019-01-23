@@ -12,6 +12,10 @@ body{
   overflow: hidden;
 }
 
+*:focus{
+  outline: none;
+}
+
 .section-left{
   display: inline-block;
   background-color: #222d32;
@@ -63,6 +67,10 @@ ul.navigation li a{
   padding: 12px 10px;
   color: #b8c7ce;
   border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+ul.navigation li a span{
+  margin-top: 3px;
 }
 
 ul.navigation li a:hover,

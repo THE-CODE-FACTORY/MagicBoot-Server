@@ -36,6 +36,9 @@ const message = JSON.stringify({
 // bind server
 server.bind(function () {
 
+    const addr = this.address();
+    log.debug("Bind to %s:%d", addr.address, addr.port);
+
     // tell udp to braodcast
     server.setBroadcast(true);
 

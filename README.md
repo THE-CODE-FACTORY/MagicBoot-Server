@@ -190,7 +190,7 @@ https://github.com/THE-CODE-FACTORY/MagicBoot-Server/wiki/Screenshots
     - ~~tftp~~
     - ~~http~~
   - updates
-  - logfiels
+  - ~~logfiels~~
   - ~~computer~~
 - http cluster (multi core use)
 - plugin system (VNC)
