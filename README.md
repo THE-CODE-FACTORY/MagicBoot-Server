@@ -190,11 +190,24 @@ https://github.com/THE-CODE-FACTORY/MagicBoot-Server/wiki/Screenshots
     - ~~tftp~~
     - ~~http~~
   - updates
+<<<<<<< HEAD
   - ~~logfiels~~
+=======
+  - logfile
+>>>>>>> 9cae72acf9e4927a6c5fed82047102158026bb6d
   - ~~computer~~
 - http cluster (multi core use)
-- plugin system (VNC)
-- updater (auto updater)
+- plugin system (VNC, RDP)
+- updater (auto update)
+- web based installer
+- service wrapper (run on OS startup)
+  - Windows
+  - Linux
+- User management (low priority)
+  - Register
+  - Rights
+  - Tokens
+  - API Authentication
 
 
 #### Note
