@@ -60,7 +60,7 @@ module.exports = function (log, app) {
 
     router.get("/clear", function (req, res) {
 
-        fs.unlink(path.resolve(__dirname, "../log/app.log"), (err) => {
+        fs.truncate(path.resolve(__dirname, "../log/app.log"), 0, (err) => {
 
             if (err) {
                 return res.status(500).json({

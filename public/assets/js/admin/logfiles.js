@@ -4,6 +4,21 @@ app.controller('Logfiles', function ($scope, api) {
     $scope.level = "";
     $scope.settings = null;
 
+    const interval = setInterval(function () {
+
+        console.log("Logfiles, get..");
+
+        api.get("/logfiles", function (err, data) {
+            $scope.log = data;
+        });
+
+    }, 10000);
+
+    $scope.$on('$destroy', function () {
+        console.log("Unload controller");
+        clearInterval(interval);
+    })
+
     api.get("/logfiles", function (err, data) {
         $scope.log = data;
     });
@@ -40,6 +55,7 @@ app.controller('Logfiles', function ($scope, api) {
     $scope.clear = function () {
         api.get("/logfiles/clear", function (err, data) {
 
+            $scope.log = [];
             console.log("CLEAR:", err, data);
 
         });
